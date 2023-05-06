@@ -2,6 +2,12 @@ package Cajero;
 
 import Conexion_bd.Conexion;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -31,18 +37,18 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         txfDni = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txfContraseña = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblDni = new javax.swing.JLabel();
+        lblPin = new javax.swing.JLabel();
+        txfPin = new javax.swing.JTextField();
+        lblCajero = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        btnRetroceder = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ATM");
         setBackground(new java.awt.Color(102, 255, 255));
         setIconImages(null);
-        setName("frame2"); // NOI18N
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -54,20 +60,21 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(txfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 180, 30));
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel2.setText("INTRODUCE TU DNI:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 200, 30));
+        lblDni.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lblDni.setText("INTRODUCE TU DNI:");
+        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 200, 30));
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel3.setText("INTRODUCE TU PIN SECRETO:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 30));
+        lblPin.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        lblPin.setText("INTRODUCE TU PIN SECRETO:");
+        getContentPane().add(lblPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 30));
 
-        txfContraseña.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        getContentPane().add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 180, 30));
+        txfPin.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txfPin.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        getContentPane().add(txfPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 180, 30));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
-        jLabel4.setText("CAJERO ATM");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 380, 70));
+        lblCajero.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
+        lblCajero.setText("CAJERO ATM");
+        getContentPane().add(lblCajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 380, 70));
 
         btnLogin.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         btnLogin.setText("Acceder");
@@ -76,12 +83,22 @@ public class Login extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 130, 30));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 130, 30));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cajero/fondo.jpg"))); // NOI18N
+        btnRetroceder.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        btnRetroceder.setText("Retroceder");
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 30));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 346));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfDniActionPerformed
@@ -89,14 +106,71 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txfDniActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    Connection conexion = Conexion.mySQL("cajero", "root", ""); //El espacio en blanco es la clave de root
-        if (conexion == null) {
-            System.out.println("Error, no se ha conectado con la base de datos");
-            System.exit(0);
+    Connection conexion = Conexion.mySQL("cajero", "root", "");
+    String dniIntroducido=txfDni.getText();
+    String pinIntroducido=txfPin.getText();
+    
+    if(dniIntroducido.equals("Administrator") && pinIntroducido.equals("1234")){
+    try{
+    Statement sentencia = conexion.createStatement();
+    String sql = "SELECT * FROM administradores WHERE Nombre = '"+dniIntroducido+"' AND Contraseña = '"+pinIntroducido+"'";
+    ResultSet datos = sentencia.executeQuery(sql);
+    if (datos.next()) {
+    JOptionPane.showMessageDialog(null, "Se ha conectado correctamente");
+    // abrir el siguiente JFrame
+    Menu Menu= new Menu();
+    Menu.setVisible(true);
+    this.dispose();
+    }
+                        
+    }catch(SQLException ex){
+       JOptionPane.showMessageDialog(null, "Error en la consulta");
+    }
+    }else{}
+    if (conexion == null) {
+    JOptionPane.showMessageDialog(null, "Conexión no establecida");
+    }else{
+         try {
+                boolean autenticado = false;
+                do {
+                dniIntroducido=txfDni.getText();
+                pinIntroducido=txfPin.getText();
+
+                if (dniIntroducido.isBlank() || pinIntroducido.isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Debe completar los campos");
+                    break;
+                } else {
+                    Statement sentencia = conexion.createStatement();
+                    String sql = "SELECT * FROM clientes WHERE DNI = '"+dniIntroducido+"' AND Contraseña = '"+pinIntroducido+"'";
+                    ResultSet datos = sentencia.executeQuery(sql);
+                    if (datos.next()) {
+                        JOptionPane.showMessageDialog(null, "Se ha conectado correctamente");
+                        autenticado = true;
+                        // abrir el siguiente JFrame
+                    } else {
+                        if (intentos == 0) {
+                            JOptionPane.showMessageDialog(null, "Tarjeta bloqueada por exceso de intentos. El programa se cerrará.");
+                            System.exit(0);
+                        }
+                        JOptionPane.showMessageDialog(null, "El DNI y/o el PIN son incorrectos. Inténtelo de nuevo.");
+                        intentos--;
+                        txfDni.setText("");
+                        txfPin.setText("");
+                    }
+                }
+            } while (!autenticado);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error en la consulta");
+            }
         }
-        System.out.println("Se ha conectado con cajero");
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+            Inicio Inicio = new Inicio();
+            Inicio.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_btnRetrocederActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -134,11 +208,13 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnRetroceder;
+    private javax.swing.JLabel lblCajero;
+    private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFondo;
-    private javax.swing.JTextField txfContraseña;
+    private javax.swing.JLabel lblPin;
     private javax.swing.JTextField txfDni;
+    private javax.swing.JTextField txfPin;
     // End of variables declaration//GEN-END:variables
+    private int intentos=2;
 }

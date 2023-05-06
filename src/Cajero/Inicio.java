@@ -18,6 +18,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.cambiarIdioma("Español");
     }
 
     /**
@@ -29,32 +30,34 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnEspañol = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnIngles = new javax.swing.JButton();
         btnFrances = new javax.swing.JButton();
-        lblFondo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ATM");
         setBackground(new java.awt.Color(102, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImages(null);
-        setMinimumSize(new java.awt.Dimension(610, 346));
-        setName("frame1"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(610, 346));
+        setMaximumSize(new java.awt.Dimension(612, 344));
+        setMinimumSize(new java.awt.Dimension(612, 344));
+        setPreferredSize(new java.awt.Dimension(612, 344));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 48)); // NOI18N
-        jLabel2.setText("Bienvenido...");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 320, 70));
+        lblBienvenido.setFont(new java.awt.Font("Verdana", 0, 48)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(51, 255, 255));
+        lblBienvenido.setText("Bienvenido...");
+        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 440, 70));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridLayout(1, 3, 45, 0));
 
-        btnEspañol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cajero/español.PNG"))); // NOI18N
+        btnEspañol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/español.PNG"))); // NOI18N
         btnEspañol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEspañolActionPerformed(evt);
@@ -62,24 +65,47 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel1.add(btnEspañol);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cajero/ingles.png"))); // NOI18N
-        jPanel1.add(jButton1);
+        btnIngles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ingles.png"))); // NOI18N
+        btnIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInglesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnIngles);
 
-        btnFrances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cajero/frances.png"))); // NOI18N
+        btnFrances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/frances.png"))); // NOI18N
         jPanel1.add(btnFrances);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 500, 70));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 360, 50));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cajero/fondo.jpg"))); // NOI18N
-        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cajero.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 610, 360));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspañolActionPerformed
-
+            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta();
+            Introducir_Tarjeta.setVisible(true);
+            this.dispose();
+            cambiarIdioma("Español");
+            
     }//GEN-LAST:event_btnEspañolActionPerformed
 
+    private void btnInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInglesActionPerformed
+            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta();
+            Introducir_Tarjeta.setVisible(true);
+            this.dispose();
+            cambiarIdioma("Ingles");
+    }//GEN-LAST:event_btnInglesActionPerformed
+    private void cambiarIdioma(String nombreIdioma){
+        Idioma idioma = new Idioma(nombreIdioma);
+        
+        this.setTitle(idioma.getProperty("titulo"));
+        this.lblBienvenido.setText(idioma.getProperty("lblBienvenido"));
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -118,9 +144,9 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEspañol;
     private javax.swing.JButton btnFrances;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnIngles;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblBienvenido;
     // End of variables declaration//GEN-END:variables
 }
