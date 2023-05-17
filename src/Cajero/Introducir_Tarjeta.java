@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Cajero;
+import Conexion_bd.Conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +35,20 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
 
         btnTarjeta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txfNumeroTarjeta = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btn1 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
+        btn4 = new javax.swing.JButton();
+        btn5 = new javax.swing.JButton();
+        btn6 = new javax.swing.JButton();
+        btn7 = new javax.swing.JButton();
+        btn8 = new javax.swing.JButton();
+        btn9 = new javax.swing.JButton();
+        btn0 = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Introducir Tarjeta");
@@ -51,19 +71,112 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
         });
         getContentPane().add(btnTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 160, 90));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel1.setText("Introduce la tarjeta");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 210, 30));
+        jLabel1.setText("de la tarjeta");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 200, 30));
+
+        txfNumeroTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfNumeroTarjetaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txfNumeroTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 200, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel3.setText("Introduce el numero");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_cajero.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
+
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 40, 30));
+
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 40, 30));
+
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 30, 30));
+
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 40, 30));
+
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 40, 30));
+
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 40, 30));
+
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 40, 30));
+
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 40, 30));
+
+        btn9.setText("jButton1");
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 40, -1));
+
+        btn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn0ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 40, 20));
+
+        btnBorrar.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 40, 20));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
+            Connection conexion = Conexion.mySQL("cajero", "root", "");
+            String tarjetaIntroducida = txfNumeroTarjeta.getText();
             Login Login = new Login();
             Login.setVisible(true);
             this.dispose();
@@ -77,6 +190,66 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     private void btnTarjetaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarjetaMouseExited
         btnTarjeta.setBounds(430,260,160,100);
     }//GEN-LAST:event_btnTarjetaMouseExited
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"1");
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"2");
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"3");
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"4");
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"5");
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"6");
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"7");
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"8");
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"9");
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        txfNumeroTarjeta.setText(cadena+"0");
+    }//GEN-LAST:event_btn0ActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String cadena= txfNumeroTarjeta.getText();
+        String nueva_cadena = cadena.substring(0, cadena.length() - 1);
+        txfNumeroTarjeta.setText(nueva_cadena);
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void txfNumeroTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNumeroTarjetaActionPerformed
+        
+    }//GEN-LAST:event_txfNumeroTarjetaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,8 +287,21 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn0;
+    private javax.swing.JButton btn1;
+    private javax.swing.JButton btn2;
+    private javax.swing.JButton btn3;
+    private javax.swing.JButton btn4;
+    private javax.swing.JButton btn5;
+    private javax.swing.JButton btn6;
+    private javax.swing.JButton btn7;
+    private javax.swing.JButton btn8;
+    private javax.swing.JButton btn9;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnTarjeta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txfNumeroTarjeta;
     // End of variables declaration//GEN-END:variables
 }
