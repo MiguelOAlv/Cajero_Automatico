@@ -106,7 +106,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txfDniActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    Connection conexion = Conexion.mySQL("cajero", "root", "");
+    Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
     String dniIntroducido=txfDni.getText();
     String pinIntroducido=txfPin.getText();
     

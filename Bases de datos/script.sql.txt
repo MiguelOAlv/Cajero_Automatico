@@ -1,0 +1,29 @@
+create table CLIENTE (
+DNI VARCHAR(50) primary KEY,
+Nombre VARCHAR(50) NOT null,
+Apellidos VARCHAR(50),
+telefono NUMERIC(9),
+Fecha_nac DATE,
+ID_Cuenta INT NOT null
+);
+
+CREATE TABLE CUENTA(
+ID_Cuenta INT PRIMARY KEY AUTO_INCREMENT,
+Fecha_alta date NOT null,
+Fecha_baja date,
+Num_Tarjeta NUMERIC(16),
+Saldo DOUBLE
+);
+
+CREATE TABLE TARJETA(
+Num_Tarjeta NUMERIC(16) PRIMARY KEY,
+PIN INT not null
+);
+
+CREATE TABLE MOVIMIENTOS(
+ID_Movimiento int PRIMARY KEY AUTO_INCREMENT,
+Num_Tarjeta NUMERIC(16),
+Hora TIME,
+Fecha DATE,
+Tipo varchar(50)
+);
