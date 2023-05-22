@@ -26,7 +26,7 @@ public class Sesion {
         this.Contrasena = Contrasena;
         this.fecha = LocalDate.now();
     }
-    
+    // Constructor cliente
     public Sesion(String ID_Cliente, String Nombre, String TarjetaCredito, int pin) {
         this.ID_Cliente = ID_Cliente;
         this.Nombre = Nombre;
@@ -34,21 +34,12 @@ public class Sesion {
         this.pin = pin;
         this.fecha = LocalDate.now();
     }
-
     public int getID_Administrador() {
         return ID_Administrador;
     }
 
-    public void setID_Administrador(int ID_Administrador) {
-        this.ID_Administrador = ID_Administrador;
-    }
-
     public String getID_Cliente() {
         return ID_Cliente;
-    }
-
-    public void setID_Cliente(String ID_Cliente) {
-        this.ID_Cliente = ID_Cliente;
     }
 
     public String getNombre() {

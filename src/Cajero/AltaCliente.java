@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Miguel
@@ -19,9 +21,10 @@ import javax.swing.JOptionPane;
 public class AltaCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form AltaCliente
+     * Creates new form Introducir_Tarjeta
      */
-    public AltaCliente() {
+    public AltaCliente(Sesion sesion_admin){
+        this.sesion= sesion_admin;
         initComponents();
         jPanel1.setBackground(new Color(0, 0, 0, 0));
         jPanel2.setBackground(new Color(0, 0, 0, 0));
@@ -36,6 +39,9 @@ public class AltaCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        btnRetroceder = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txfNombre = new javax.swing.JTextField();
@@ -47,13 +53,40 @@ public class AltaCliente extends javax.swing.JFrame {
         txfTelefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txfDireccion = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        btnRetroceder = new javax.swing.JButton();
-        btnConfirmar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Alta Cliente");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0, 250, 0));
+
+        btnRetroceder.setBackground(new java.awt.Color(255, 255, 255));
+        btnRetroceder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRetroceder.setForeground(new java.awt.Color(0, 0, 0));
+        btnRetroceder.setText("Retroceder");
+        btnRetroceder.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRetroceder);
+
+        btnConfirmar.setBackground(new java.awt.Color(51, 255, 51));
+        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnConfirmar);
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 550, 40));
 
         jPanel1.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
 
@@ -87,41 +120,23 @@ public class AltaCliente extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jPanel1.add(txfDireccion);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 580, 260));
-
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0, 250, 0));
-
-        btnRetroceder.setBackground(new java.awt.Color(255, 255, 255));
-        btnRetroceder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRetroceder.setForeground(new java.awt.Color(0, 0, 0));
-        btnRetroceder.setText("Retroceder");
-        btnRetroceder.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetrocederActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnRetroceder);
-
-        btnConfirmar.setBackground(new java.awt.Color(51, 255, 51));
-        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfirmar);
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 580, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 240));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_admin.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setMaximumSize(new java.awt.Dimension(610, 350));
+        jLabel1.setMinimumSize(new java.awt.Dimension(610, 350));
+        jLabel1.setPreferredSize(new java.awt.Dimension(610, 350));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+        Opciones_admin Opciones_admin = new Opciones_admin(this.sesion);
+        Opciones_admin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombre = txfNombre.getText();
@@ -149,13 +164,7 @@ public class AltaCliente extends javax.swing.JFrame {
             Logger.getLogger(AltaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-        //Sesion sesionAdmin = Opciones_admin.getSesion();
-        //Opciones_admin Opciones_admin = new Opciones_admin();
-        //Opciones_admin.setVisible(true);
-    }//GEN-LAST:event_btnRetrocederActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -182,11 +191,14 @@ public class AltaCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AltaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AltaCliente().setVisible(true);
+                //new AltaCliente2().setVisible(true);
             }
         });
     }
@@ -208,5 +220,5 @@ public class AltaCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txfNombre;
     private javax.swing.JTextField txfTelefono;
     // End of variables declaration//GEN-END:variables
+    private Sesion sesion;
 }
-//ID_Cliente	Nombre	Apellido	Correo_electronico	Telefono	Direccion	Contrasena

@@ -31,7 +31,6 @@ public class Opciones_admin extends javax.swing.JFrame {
         this.Sesion = sesion_admin;
         initJLabel();
     }
-
     public Sesion getSesion() {
         return Sesion;
     }
@@ -55,7 +54,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                         String ubicacion = resultado.getString("Ubicacion");
                         String cantidad_efectivo = resultado.getString("Cantidad_de_efectivo_actual");
                         float cantidad_float = Float.parseFloat(cantidad_efectivo);
-                               lblID.setText("ID Cajero"+String.valueOf(id));
+                               lblID.setText("ID Cajero: "+String.valueOf(id));
                                lblUbicacion.setText("Ubicación: "+ubicacion);
                                lblEfectivo.setText("Cantidad de efectivo: "+(int)cantidad_float+ "€");
                             }else{
@@ -157,6 +156,11 @@ public class Opciones_admin extends javax.swing.JFrame {
         btnDesbloquear.setForeground(new java.awt.Color(0, 0, 0));
         btnDesbloquear.setText("Desbloquear Tarjeta");
         btnDesbloquear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDesbloquear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesbloquearActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDesbloquear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 190, -1));
 
         btnHistorialCajero.setBackground(new java.awt.Color(0, 204, 204));
@@ -214,10 +218,16 @@ public class Opciones_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUsuarioActionPerformed
-        AltaCliente AltaCliente = new AltaCliente();
+        AltaCliente AltaCliente = new AltaCliente(this.Sesion);
         AltaCliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAltaUsuarioActionPerformed
+
+    private void btnDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearActionPerformed
+        DesbloquearTarjeta DesbloquearTarjeta = new DesbloquearTarjeta(this.Sesion);
+        DesbloquearTarjeta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDesbloquearActionPerformed
 
     /**
      * @param args the command line arguments
