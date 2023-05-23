@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -18,12 +21,12 @@ import javax.swing.JOptionPane;
  *
  * @author Miguel
  */
-public class AltaCliente extends javax.swing.JFrame {
+public class AltaTarjeta extends javax.swing.JFrame {
 
     /**
      * Creates new form Introducir_Tarjeta
      */
-    public AltaCliente(Sesion sesion_admin){
+    public AltaTarjeta(Sesion sesion_admin){
         this.sesion= sesion_admin;
         initComponents();
         jPanel1.setBackground(new Color(0, 0, 0, 0));
@@ -43,18 +46,14 @@ public class AltaCliente extends javax.swing.JFrame {
         btnRetroceder = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        txfDNI = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txfNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txfApellidos = new javax.swing.JTextField();
+        txfDNI = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txfCorreo = new javax.swing.JTextField();
+        txfPIN = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txfTelefono = new javax.swing.JTextField();
+        txfLimite = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txfDireccion = new javax.swing.JTextField();
+        txfSaldo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,43 +89,31 @@ public class AltaCliente extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 550, 40));
 
-        jPanel1.setLayout(new java.awt.GridLayout(6, 2, 10, 10));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("DNI:");
-        jPanel1.add(jLabel7);
-        jPanel1.add(txfDNI);
+        jPanel1.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("DNI:");
         jPanel1.add(jLabel2);
-        jPanel1.add(txfNombre);
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Apellidos:");
-        jPanel1.add(jLabel3);
-        jPanel1.add(txfApellidos);
+        jPanel1.add(txfDNI);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Correo Electrónico:");
+        jLabel4.setText("PIN:");
         jPanel1.add(jLabel4);
-        jPanel1.add(txfCorreo);
+        jPanel1.add(txfPIN);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Teléfono:");
+        jLabel5.setText("Limite de credito diario:");
         jPanel1.add(jLabel5);
-        jPanel1.add(txfTelefono);
+        jPanel1.add(txfLimite);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Dirección:");
+        jLabel6.setText("Saldo inicial:");
         jPanel1.add(jLabel6);
-        jPanel1.add(txfDireccion);
+        jPanel1.add(txfSaldo);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 240));
 
@@ -148,30 +135,29 @@ public class AltaCliente extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String dni = txfDNI.getText();
-        String nombre = txfNombre.getText();
-        String apellido = txfApellidos.getText();
-        String correo = txfCorreo.getText();
-        String telefono = txfTelefono.getText();
-        String direccion = txfDireccion.getText();
+        String pin = txfPIN.getText();
+        String limite = txfLimite.getText();
+        String saldo = txfSaldo.getText();
+        LocalDate hoy = LocalDate.now();
+        //Se coge la fecha actual y se le suman 5 años para calcular la fecha de vencimiento
+        LocalDate cincoAños = hoy.plusYears(5);
         try {
-            Connection conexion_alta = Conexion.mySQL("proyecto_final", "root", "");
-            Statement sentencia_alta;
-            sentencia_alta = conexion_alta.createStatement();
-            String sql_alta = "INSERT INTO clientes (DNI, Nombre, Apellido, Correo_electronico, Telefono, Direccion)VALUES('"+dni+"', '"+nombre+"', '"+apellido+"', '"+correo+"', '"+telefono+"', '"+direccion+"');";
-            int resultado_alta = sentencia_alta.executeUpdate(sql_alta);
-            if(resultado_alta>0){
-                JOptionPane.showMessageDialog(this, "Se ha realizado correctamente el alta", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentenciaTarjeta;
+            sentenciaTarjeta = conexionTarjeta.createStatement();
+            String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Cliente, PIN, Limite_de_credito, Saldo_actual, Fecha_vencimiento)VALUES((SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+pin+"', '"+limite+"','"+saldo+"', '"+cincoAños+"');";
+            int resultadoTarjeta = sentenciaTarjeta.executeUpdate(sqlTarjeta);
+            if(resultadoTarjeta>0){
+                JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 txfDNI.setText("");
-                txfNombre.setText("");
-                txfApellidos.setText("");
-                txfCorreo.setText("");
-                txfTelefono.setText("");
-                txfDireccion.setText("");
+                txfPIN.setText("");
+                txfLimite.setText("");
+                txfSaldo.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AltaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
     
@@ -192,14 +178,26 @@ public class AltaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AltaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AltaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AltaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AltaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -218,19 +216,15 @@ public class AltaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txfApellidos;
-    private javax.swing.JTextField txfCorreo;
     private javax.swing.JTextField txfDNI;
-    private javax.swing.JTextField txfDireccion;
-    private javax.swing.JTextField txfNombre;
-    private javax.swing.JTextField txfTelefono;
+    private javax.swing.JTextField txfLimite;
+    private javax.swing.JTextField txfPIN;
+    private javax.swing.JTextField txfSaldo;
     // End of variables declaration//GEN-END:variables
     private Sesion sesion;
 }

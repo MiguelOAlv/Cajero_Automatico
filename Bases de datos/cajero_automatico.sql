@@ -4,6 +4,7 @@ USE `proyecto_final2`;
 
 CREATE TABLE clientes (
   ID_Cliente INT PRIMARY KEY AUTO_INCREMENT DEFAULT 1,
+  
   Nombre VARCHAR(50),
   Apellido VARCHAR(50),
   Correo_electronico VARCHAR(100),
@@ -30,7 +31,7 @@ CREATE TABLE tarjetas_de_credito (
   FOREIGN KEY (ID_Cliente) REFERENCES Clientes(ID_Cliente)
 );
 
--- Trigger para no introducir tarjetas de credito con una fecha de vencimiento menor que la actual.
+-- Trigger para no introducir tarjetas de credito con una fecha de vencimiento mayor que la actual.
 DELIMITER //
 CREATE TRIGGER fecha_pasada BEFORE INSERT ON Tarjetas_de_credito
 FOR EACH ROW

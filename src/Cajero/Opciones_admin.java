@@ -85,9 +85,10 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblEfectivo = new javax.swing.JLabel();
         btnAltaUsuario = new javax.swing.JButton();
         btnDesbloquear = new javax.swing.JButton();
-        btnHistorialCajero = new javax.swing.JButton();
+        btnAltaTarjeta = new javax.swing.JButton();
         btnArqueo = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
+        btnAltaCuenta = new javax.swing.JButton();
         btnApagar = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -161,28 +162,55 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnDesbloquearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDesbloquear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 190, -1));
+        getContentPane().add(btnDesbloquear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 190, -1));
 
-        btnHistorialCajero.setBackground(new java.awt.Color(0, 204, 204));
-        btnHistorialCajero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnHistorialCajero.setForeground(new java.awt.Color(0, 0, 0));
-        btnHistorialCajero.setText("Historial Cajero");
-        btnHistorialCajero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(btnHistorialCajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 190, -1));
+        btnAltaTarjeta.setBackground(new java.awt.Color(0, 204, 204));
+        btnAltaTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAltaTarjeta.setForeground(new java.awt.Color(0, 0, 0));
+        btnAltaTarjeta.setText("Alta Tarjeta");
+        btnAltaTarjeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAltaTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaTarjetaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAltaTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 190, -1));
 
         btnArqueo.setBackground(new java.awt.Color(0, 204, 204));
         btnArqueo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnArqueo.setForeground(new java.awt.Color(0, 0, 0));
         btnArqueo.setText("Arqueo Cajero");
         btnArqueo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnArqueo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArqueoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnArqueo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, -1));
 
         btnHistorial.setBackground(new java.awt.Color(0, 204, 204));
         btnHistorial.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnHistorial.setForeground(new java.awt.Color(0, 0, 0));
-        btnHistorial.setText("Historial de Tarjeta");
+        btnHistorial.setText("Historial Cajero");
         btnHistorial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 190, -1));
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 190, -1));
+
+        btnAltaCuenta.setBackground(new java.awt.Color(0, 204, 204));
+        btnAltaCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAltaCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        btnAltaCuenta.setText("Alta Cuenta");
+        btnAltaCuenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAltaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaCuentaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAltaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 190, -1));
 
         btnApagar.setBackground(new java.awt.Color(255, 102, 102));
         btnApagar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -229,6 +257,28 @@ public class Opciones_admin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDesbloquearActionPerformed
 
+    private void btnAltaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaCuentaActionPerformed
+        AltaCuenta AltaCuenta = new AltaCuenta(this.Sesion);
+        AltaCuenta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAltaCuentaActionPerformed
+
+    private void btnAltaTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaTarjetaActionPerformed
+        AltaTarjeta AltaTarjeta = new AltaTarjeta(this.Sesion);
+        AltaTarjeta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAltaTarjetaActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        HistorialCajero HistorialCajero = new HistorialCajero(this.Sesion);
+        HistorialCajero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void btnArqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArqueoActionPerformed
+       
+    }//GEN-LAST:event_btnArqueoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,13 +315,14 @@ public class Opciones_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAltaCuenta;
+    private javax.swing.JButton btnAltaTarjeta;
     private javax.swing.JButton btnAltaUsuario;
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnArqueo;
     private javax.swing.JButton btnDesbloquear;
     private javax.swing.JButton btnDesconectar;
     private javax.swing.JButton btnHistorial;
-    private javax.swing.JButton btnHistorialCajero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
