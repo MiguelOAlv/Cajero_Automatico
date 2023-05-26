@@ -4,7 +4,12 @@
  */
 package Cajero;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,6 +23,7 @@ public class Sesion {
     private String TarjetaCredito;
     private int pin;
     private LocalDate fecha;
+    private Timer timer;
     
     // Constructor
     public Sesion(int ID_Administrador, String Nombre, String Contrasena) {
@@ -25,6 +31,18 @@ public class Sesion {
         this.Nombre = Nombre;
         this.Contrasena = Contrasena;
         this.fecha = LocalDate.now();
+        /*this.timer = new Timer(1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                LocalTime hora = LocalTime.now();
+                DateTimeFormatter formatoHora=DateTimeFormatter.ofPattern("HH:mm:ss");
+                lblHora.setText(formatoHora.format(hora));
+            }
+        });
+        timer.start();*/
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
     // Constructor cliente
     public Sesion(String ID_Cliente, String Nombre, String TarjetaCredito, int pin) {

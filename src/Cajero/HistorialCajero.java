@@ -34,12 +34,14 @@ public class HistorialCajero extends javax.swing.JFrame {
         initTable();
     }
     private void initTable(){
-         DefaultTableModel tableModel = new DefaultTableModel( new Object[]{"ID_Tarjeta", "Fecha", "Hora", "Tipo_transaccion", "Monto"}, 0);
-            tableModel.addColumn("ID_Tarjeta");
-            tableModel.addColumn("Fecha");
-            tableModel.addColumn("Hora");
-            tableModel.addColumn("Tipo_transaccion");
-            tableModel.addColumn("Monto");
+            String[] nombresColumnas = {"ID_Tarjeta","Fecha","Hora","Tipo transaccion","Monto"};
+            modeloTabla =(DefaultTableModel)table.getModel();
+            table.setModel(modeloTabla);
+            modeloTabla.addColumn("ID_Tarjeta");
+            modeloTabla.addColumn("Fecha");
+            modeloTabla.addColumn("Hora");
+            modeloTabla.addColumn("Tipo");
+            modeloTabla.addColumn("Monto");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +68,16 @@ public class HistorialCajero extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        table.setModel(modeloTabla);
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
         jScrollPane1.setViewportView(table);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 360, 240));
@@ -139,13 +150,13 @@ public class HistorialCajero extends javax.swing.JFrame {
             String sqlHistorial = "SELECT ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"'";
             ResultSet resultadoHistorial = sentenciaHistorial.executeQuery(sqlHistorial);
             if(resultadoHistorial.next()) {
-                    Object[] row = new Object[5];
-                    row[0] = resultadoHistorial.getInt("ID_Tarjeta");
-                    row[1] = resultadoHistorial.getString("Fecha");
-                    row[2] = resultadoHistorial.getString("Hora");
-                    row[3] = resultadoHistorial.getString("Tipo_transaccion");
-                    row[4] = resultadoHistorial.getFloat("Monto");
-                    modeloTabla.addRow(row);
+                    Object[] filas = new String[5];
+                    filas[0] = resultadoHistorial.getString("ID_Tarjeta");
+                    filas[1] = resultadoHistorial.getString("Fecha");
+                    filas[2] = resultadoHistorial.getString("Hora");
+                    filas[3] = resultadoHistorial.getString("Tipo_transaccion");
+                    filas[4] = resultadoHistorial.getString("Monto");
+                    modeloTabla.addRow(filas);
             }else{
                 JOptionPane.showMessageDialog(this, "Error al realizar la busqueda", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -265,5 +276,5 @@ public class HistorialCajero extends javax.swing.JFrame {
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
     private Sesion sesion;
-    DefaultTableModel modeloTabla = new DefaultTableModel();
+    private javax.swing.table.DefaultTableModel modeloTabla;
 }

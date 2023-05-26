@@ -5,12 +5,17 @@
 package Cajero;
 
 import Conexion_bd.Conexion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -40,6 +45,15 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblSesion.setText("Sesión: "+nombre_sesion);
         LocalDate hoy = LocalDate.now();
         lblFecha.setText("Fecha: "+hoy);
+        Timer timer = new Timer(1000,new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                LocalTime hora = LocalTime.now();
+                DateTimeFormatter formatoHora=DateTimeFormatter.ofPattern("HH:mm:ss");
+                lblHora.setText("Hora: "+formatoHora.format(hora));
+            }
+        });
+        timer.start();
+        lblHora.setText(Sesion.getTimer()+"");
         try{
             Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_label = conexion.createStatement();
@@ -78,6 +92,7 @@ public class Opciones_admin extends javax.swing.JFrame {
 
         btnDesconectar = new javax.swing.JButton();
         lblSesion = new javax.swing.JLabel();
+        lblHora = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
@@ -95,6 +110,8 @@ public class Opciones_admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
+        setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDesconectar.setBackground(new java.awt.Color(51, 51, 255));
@@ -112,7 +129,12 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblSesion.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblSesion.setText("Sesión:");
-        getContentPane().add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 190, 40));
+        getContentPane().add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 190, 30));
+
+        lblHora.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblHora.setForeground(new java.awt.Color(0, 0, 0));
+        lblHora.setText("Hora:");
+        getContentPane().add(lblHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 180, 30));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -227,7 +249,7 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblFecha.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblFecha.setText("Fecha:");
-        getContentPane().add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 180, 40));
+        getContentPane().add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 180, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_admin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
@@ -276,7 +298,9 @@ public class Opciones_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnArqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArqueoActionPerformed
-       
+        ArqueoCajero ArqueoCajero = new ArqueoCajero(this.Sesion);
+        ArqueoCajero.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnArqueoActionPerformed
 
     /**
@@ -328,6 +352,7 @@ public class Opciones_admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEfectivo;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblSesion;
     private javax.swing.JLabel lblUbicacion;
