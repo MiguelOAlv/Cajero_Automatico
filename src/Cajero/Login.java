@@ -36,8 +36,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txfDni = new javax.swing.JTextField();
-        lblDni = new javax.swing.JLabel();
         lblPin = new javax.swing.JLabel();
         txfPin = new javax.swing.JTextField();
         lblCajero = new javax.swing.JLabel();
@@ -52,25 +50,13 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txfDni.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfDniActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 180, 30));
-
-        lblDni.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        lblDni.setText("INTRODUCE TU DNI:");
-        getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 200, 30));
-
         lblPin.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         lblPin.setText("INTRODUCE TU PIN SECRETO:");
-        getContentPane().add(lblPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 290, 30));
+        getContentPane().add(lblPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 290, 30));
 
         txfPin.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txfPin.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        getContentPane().add(txfPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 180, 30));
+        getContentPane().add(txfPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 190, 30));
 
         lblCajero.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
         lblCajero.setText("CAJERO ATM");
@@ -83,7 +69,7 @@ public class Login extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 130, 30));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 130, 30));
 
         btnRetroceder.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         btnRetroceder.setText("Retroceder");
@@ -92,7 +78,7 @@ public class Login extends javax.swing.JFrame {
                 btnRetrocederActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 30));
+        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, 30));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 346));
@@ -101,51 +87,22 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfDniActionPerformed
-
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
-    String dniIntroducido=txfDni.getText();
-    String pinIntroducido=txfPin.getText();
-    
-    if(dniIntroducido.equals("Administrator") && pinIntroducido.equals("1234")){
-    try{
-    Statement sentencia = conexion.createStatement();
-    String sql = "SELECT * FROM administradores WHERE Nombre = '"+dniIntroducido+"' AND Contraseña = '"+pinIntroducido+"'";
-    ResultSet datos = sentencia.executeQuery(sql);
-    if (datos.next()) {
-    JOptionPane.showMessageDialog(null, "Se ha conectado correctamente");
-    // abrir el siguiente JFrame
-    Menu Menu= new Menu();
-    Menu.setVisible(true);
-    this.dispose();
-    }
-                        
-    }catch(SQLException ex){
-       JOptionPane.showMessageDialog(null, "Error en la consulta");
-    }
-    }else{}
     if (conexion == null) {
     JOptionPane.showMessageDialog(null, "Conexión no establecida");
     }else{
          try {
-                boolean autenticado = false;
-                do {
-                dniIntroducido=txfDni.getText();
-                pinIntroducido=txfPin.getText();
+                String pinIntroducido=txfPin.getText();
 
-                if (dniIntroducido.isBlank() || pinIntroducido.isBlank()) {
-                    JOptionPane.showMessageDialog(null, "Debe completar los campos");
-                    break;
+                if (pinIntroducido.isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Debe introducir un pin", "Error",JOptionPane.ERROR_MESSAGE);
                 } else {
                     Statement sentencia = conexion.createStatement();
-                    String sql = "SELECT * FROM clientes WHERE DNI = '"+dniIntroducido+"' AND Contraseña = '"+pinIntroducido+"'";
+                    String sql = "SELECT ID_Tarjeta FROM  = '"+pinIntroducido+"'";
                     ResultSet datos = sentencia.executeQuery(sql);
                     if (datos.next()) {
                         JOptionPane.showMessageDialog(null, "Se ha conectado correctamente");
-                        autenticado = true;
                         // abrir el siguiente JFrame
                     } else {
                         if (intentos == 0) {
@@ -154,11 +111,10 @@ public class Login extends javax.swing.JFrame {
                         }
                         JOptionPane.showMessageDialog(null, "El DNI y/o el PIN son incorrectos. Inténtelo de nuevo.");
                         intentos--;
-                        txfDni.setText("");
                         txfPin.setText("");
                     }
                 }
-            } while (!autenticado);
+
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error en la consulta");
             }
@@ -210,10 +166,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel lblCajero;
-    private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblPin;
-    private javax.swing.JTextField txfDni;
     private javax.swing.JTextField txfPin;
     // End of variables declaration//GEN-END:variables
     private int intentos=2;

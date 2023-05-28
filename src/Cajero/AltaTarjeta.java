@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Cajero;
+import static Cajero.Metodos.validarDNI;
 import Conexion_bd.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
@@ -134,6 +135,9 @@ public class AltaTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if(txfDNI.getText().equals("") || txfPIN.getText().equals("") || txfLimite.getText().equals("") || txfSaldo.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos para poder realizar el alta", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         String dni = txfDNI.getText();
         String pin = txfPIN.getText();
         String limite = txfLimite.getText();
@@ -141,6 +145,15 @@ public class AltaTarjeta extends javax.swing.JFrame {
         LocalDate hoy = LocalDate.now();
         //Se coge la fecha actual y se le suman 5 años para calcular la fecha de vencimiento
         LocalDate cincoAños = hoy.plusYears(5);
+        if(validarDNI(dni)==false){
+            JOptionPane.showMessageDialog(this, "El DNI no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(!limite.matches("[0-9]+")){
+                JOptionPane.showMessageDialog(this, "El campo limite solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                if(!saldo.matches("[0-9]+")){
+                JOptionPane.showMessageDialog(this, "El campo saldo solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
         try {
             Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaTarjeta;
@@ -158,6 +171,10 @@ public class AltaTarjeta extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
     

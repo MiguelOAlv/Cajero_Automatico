@@ -139,12 +139,16 @@ public class HistorialCajero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnVerRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRegistrosActionPerformed
-        Date fechaInicio = jdcInicio.getDate();
-        Date fechaFin = jdcFin.getDate();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        String sFechaInicio = formatoFecha.format(fechaInicio);
-        String sFechaFin = formatoFecha.format(fechaFin);
+        if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
+                JOptionPane.showMessageDialog(this, "El rango de fechas no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                Date fechaInicio = jdcInicio.getDate();
+                Date fechaFin = jdcFin.getDate();
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                String sFechaInicio = formatoFecha.format(fechaInicio);
+                String sFechaFin = formatoFecha.format(fechaFin);
         try {
+            
             Connection conexionHistorial = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaHistorial= conexionHistorial.createStatement();
             String sqlHistorial = "SELECT ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"'";
@@ -159,9 +163,11 @@ public class HistorialCajero extends javax.swing.JFrame {
                     modeloTabla.addRow(filas);
             }else{
                 JOptionPane.showMessageDialog(this, "Error al realizar la busqueda", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                }
+            
         } catch (SQLException ex) {
             Logger.getLogger(HistorialCajero.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btnVerRegistrosActionPerformed
     

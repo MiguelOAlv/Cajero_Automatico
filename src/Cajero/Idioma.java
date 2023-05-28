@@ -23,6 +23,7 @@ public class Idioma extends Properties{
                     break;
             case "Frances":
                     getProperties("frances.properties");
+                    break;
             default:
                     getProperties("espanol.properties");
         }

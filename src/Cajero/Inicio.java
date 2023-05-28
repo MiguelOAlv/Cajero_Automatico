@@ -30,7 +30,6 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblBienvenido = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnEspañol = new javax.swing.JButton();
         btnIngles = new javax.swing.JButton();
@@ -42,16 +41,9 @@ public class Inicio extends javax.swing.JFrame {
         setBackground(new java.awt.Color(102, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImages(null);
-        setMaximumSize(new java.awt.Dimension(612, 344));
         setMinimumSize(new java.awt.Dimension(612, 344));
-        setPreferredSize(new java.awt.Dimension(612, 344));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblBienvenido.setFont(new java.awt.Font("Verdana", 0, 48)); // NOI18N
-        lblBienvenido.setForeground(new java.awt.Color(51, 255, 255));
-        lblBienvenido.setText("Bienvenido...");
-        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 440, 70));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.setOpaque(false);
@@ -76,7 +68,7 @@ public class Inicio extends javax.swing.JFrame {
         btnFrances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/frances.png"))); // NOI18N
         jPanel1.add(btnFrances);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 360, 50));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 360, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cajero.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 610, 360));
@@ -101,9 +93,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInglesActionPerformed
     private void cambiarIdioma(String nombreIdioma){
         Idioma idioma = new Idioma(nombreIdioma);
-        
         this.setTitle(idioma.getProperty("titulo"));
-        this.lblBienvenido.setText(idioma.getProperty("lblBienvenido"));
         
     }
     /**
@@ -147,6 +137,5 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnIngles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblBienvenido;
     // End of variables declaration//GEN-END:variables
 }

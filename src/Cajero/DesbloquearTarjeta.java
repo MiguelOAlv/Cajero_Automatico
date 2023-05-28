@@ -199,7 +199,7 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
         if(resultado_desbloquear>0){
                 JOptionPane.showMessageDialog(this, "La tarjeta con numero "+numeroTarjeta+" se ha desbloqueado correctamente","Éxito" , JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(this, "Error al realizar el desbloqueo", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El numero introducido no corresponde con ninguno en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DesbloquearTarjeta.class.getName()).log(Level.SEVERE, null, ex);

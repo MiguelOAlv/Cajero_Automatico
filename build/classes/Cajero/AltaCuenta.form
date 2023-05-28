@@ -137,7 +137,7 @@
             <Property name="text" type="java.lang.String" value="Fecha de apertura:"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser">
+        <Component class="com.toedter.calendar.JDateChooser" name="jdcApertura">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

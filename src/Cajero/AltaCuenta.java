@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Cajero;
+import static Cajero.Metodos.validarDNI;
 import Conexion_bd.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
@@ -50,7 +51,7 @@ public class AltaCuenta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txfSaldo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser = new com.toedter.calendar.JDateChooser();
+        jdcApertura = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         txfTipo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -106,7 +107,7 @@ public class AltaCuenta extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Fecha de apertura:");
         jPanel1.add(jLabel5);
-        jPanel1.add(jDateChooser);
+        jPanel1.add(jdcApertura);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -133,12 +134,24 @@ public class AltaCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if(txfDNI.getText().equals("") || txfSaldo.getText().equals("") || jdcApertura.getDate()==null || txfTipo.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos para poder realizar el alta", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         String dni = txfDNI.getText();
         String saldo = txfSaldo.getText();
-        Date fechaApertura = jDateChooser.getDate();
+        Date fechaApertura = jdcApertura.getDate();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fechaAperturaFormateada = formato.format(fechaApertura);
         String tipo = txfTipo.getText();
+        if(validarDNI(dni)==false){
+            JOptionPane.showMessageDialog(this, "El DNI no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(!saldo.matches("[0-9]+")){
+                JOptionPane.showMessageDialog(this, "El campo saldo solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+            if(!tipo.equals("Ahorros") && !tipo.equals("Corriente")){
+                JOptionPane.showMessageDialog(this, "El tipo de cuenta solo puede ser Corriente o Ahorros", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
         try {
             Connection conexionCuenta = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaCuenta;
@@ -149,13 +162,17 @@ public class AltaCuenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La cuenta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 txfDNI.setText("");
                 txfSaldo.setText("");
-                jDateChooser.setDate(null);
+                jdcApertura.setDate(null);
                 txfTipo.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AltaCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            }
+                }
+            }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
     
@@ -204,7 +221,6 @@ public class AltaCuenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnRetroceder;
-    private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -212,6 +228,7 @@ public class AltaCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private com.toedter.calendar.JDateChooser jdcApertura;
     private javax.swing.JTextField txfDNI;
     private javax.swing.JTextField txfSaldo;
     private javax.swing.JTextField txfTipo;

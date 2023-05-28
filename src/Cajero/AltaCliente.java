@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import static Cajero.Metodos.validarCorreo;
+import static Cajero.Metodos.validarDNI;
 
 /**
  *
@@ -147,12 +149,21 @@ public class AltaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if(txfDNI.getText().equals("") || txfNombre.getText().equals("") || txfApellidos.getText().equals("") || txfCorreo.getText().equals("") || txfTelefono.getText().equals("") || txfDireccion.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos para poder realizar el alta", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
         String dni = txfDNI.getText();
         String nombre = txfNombre.getText();
         String apellido = txfApellidos.getText();
         String correo = txfCorreo.getText();
         String telefono = txfTelefono.getText();
         String direccion = txfDireccion.getText();
+        if(validarDNI(dni)==false){
+            JOptionPane.showMessageDialog(this, "El DNI no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(validarCorreo(correo)==false){
+                JOptionPane.showMessageDialog(this, "El correo no es valido", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
         try {
             Connection conexion_alta = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_alta;
@@ -172,6 +183,9 @@ public class AltaCliente extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AltaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                }
+            }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
     

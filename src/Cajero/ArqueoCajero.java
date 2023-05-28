@@ -9,9 +9,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,7 +62,7 @@ public class ArqueoCajero extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnRetroceder = new javax.swing.JButton();
         btnArqueo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCuadre = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,6 +100,12 @@ public class ArqueoCajero extends javax.swing.JFrame {
         jPanel1.add(lblLimite);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 530, 140));
+
+        jdcInicio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcInicioPropertyChange(evt);
+            }
+        });
         getContentPane().add(jdcInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 150, 30));
         getContentPane().add(jdcFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 150, 30));
 
@@ -160,12 +169,17 @@ public class ArqueoCajero extends javax.swing.JFrame {
         });
         jPanel2.add(btnArqueo);
 
-        jButton1.setBackground(new java.awt.Color(51, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Cuadre Caja");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton1);
+        btnCuadre.setBackground(new java.awt.Color(51, 255, 204));
+        btnCuadre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCuadre.setForeground(new java.awt.Color(0, 0, 0));
+        btnCuadre.setText("Cuadre Caja");
+        btnCuadre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCuadre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuadreActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCuadre);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 530, 40));
 
@@ -189,14 +203,23 @@ public class ArqueoCajero extends javax.swing.JFrame {
         if(jdcInicio.getDate()==null && jdcFin.getDate()==null){
             JOptionPane.showMessageDialog(this,"No has seleccionado un intervalo de fechas", "Error",JOptionPane.ERROR_MESSAGE);
         }else{
+            try {
                 Date fechaInicio = jdcInicio.getDate();
                 Date fechaFin = jdcFin.getDate();
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
                 String sFechaInicio = formatoFecha.format(fechaInicio);
                 String sFechaFin = formatoFecha.format(fechaFin);
+                Date dhoy = new Date();
+                //COMPROBAR QUE LA FECHA NO SEA ANTERIOR A LA FECHA INICIO O POSTERIOR A LA FECHA ACTUAL
+                if(fechaFin.before(fechaInicio) || fechaFin.after(dhoy)){
+                   JOptionPane.showMessageDialog(this, "La fecha fin es anterior a la fecha inicio o posterior a la fecha actual", "Error", JOptionPane.ERROR_MESSAGE);
+                   return;
+                }
                 DateTimeFormatter ldformatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate hoy = LocalDate.now();
                 String sHoy = hoy.format(ldformatoFecha);
+                LocalTime horaActual = LocalTime.now();
+                Time horaSql = Time.valueOf(horaActual);
                 
                 String depositoTexto = lblDeposito.getText().trim();
                 int cantidadDeposito=0 ,deppos = depositoTexto.indexOf(":");
@@ -227,10 +250,22 @@ public class ArqueoCajero extends javax.swing.JFrame {
                 }
                 int nuevaCantidad = cantidadEfectivo + cantidadDeposito - cantidadRetirada;
                 
-            try {    
+                //COMPROBAR QUE NO HAYA UNA DIFERENCIA EN EL ULTIMO ARQUEO
+                Connection conexionDiferencia = Conexion.mySQL("proyecto_final", "root", "");
+                Statement sentenciaDiferencia= conexionDiferencia.createStatement();
+                String sqlDiferencia = "SELECT diferencia FROM arqueos ORDER BY ID_Arqueo DESC LIMIT 1";
+                ResultSet resultadoDiferencia = sentenciaDiferencia.executeQuery(sqlDiferencia);
+                if(resultadoDiferencia.next()){
+                    int diferencia = resultadoDiferencia.getInt("diferencia");
+                    if(diferencia>0 || diferencia <0){
+                        JOptionPane.showMessageDialog(this, "La diferencia del ultimo arqueo debe de ser 0, cuadre la caja antes de realizar el arqueo", "Error",JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
+                //INTRODUCIR LOS DATOS DEL ARQUEO EN LA BASE DE DATOS
                 Connection conexionArqueo = Conexion.mySQL("proyecto_final", "root", "");
                 Statement sentenciaArqueo= conexionArqueo.createStatement();
-                String sqlArqueo = "INSERT INTO arqueos (ID_Cajero, ID_Administrador, Fecha_Inicio, Fecha_Fin, Fecha_arqueo_realizado, total_esperado, total_contado) VALUES(1,"+sesion.getID_Administrador()+",'"+sFechaInicio+"','"+sFechaFin+"','"+sHoy+"','"+nuevaCantidad+"','"+cantidadEfectivo+"');";
+                String sqlArqueo = "INSERT INTO arqueos (ID_Cajero, ID_Administrador, Fecha_Inicio, Fecha_Fin, Fecha_arqueo_realizado, Hora, total_esperado, total_contado) VALUES(1,"+sesion.getID_Administrador()+",'"+sFechaInicio+"','"+sFechaFin+"','"+sHoy+"','"+horaSql+"','"+nuevaCantidad+"','"+cantidadEfectivo+"');";
                 int resultadoArqueo = sentenciaArqueo.executeUpdate(sqlArqueo);
                 if(resultadoArqueo>0){
                     JOptionPane.showMessageDialog(this,"Se ha realizado correctamente el arqueo", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -244,7 +279,7 @@ public class ArqueoCajero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnArqueoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if(jdcInicio.getDate()==null && jdcFin.getDate()==null){
+        if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
         try {
             Connection conexionLimite = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaLimite= conexionLimite.createStatement();
@@ -262,28 +297,41 @@ public class ArqueoCajero extends javax.swing.JFrame {
             try{
             Date fechaInicio = jdcInicio.getDate();
             Date fechaFin = jdcFin.getDate();
+            Date hoy = new Date();
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
             String sFechaInicio = formatoFecha.format(fechaInicio);
             String sFechaFin = formatoFecha.format(fechaFin);
-            lblCajero.setText("INFORMACIÓN DEL CAJERO ENTRE "+sFechaInicio+ " Y "+sFechaFin);
+            //COMPROBAR QUE LA FECHA FIN NO SEA ANTERIOR A LA FECHA INICIO O POSTERIOR A LA FECHA ACTUAL
+            if(fechaFin.before(fechaInicio) || fechaFin.after(hoy)){
+                   JOptionPane.showMessageDialog(this, "La fecha fin es anterior a la fecha inicio o posterior a la fecha actual", "Error", JOptionPane.ERROR_MESSAGE);
+                   return;
+            }else{
+                lblCajero.setText("INFORMACIÓN DEL CAJERO ENTRE "+sFechaInicio+ " Y "+sFechaFin);
+                
                 //CONSEGUIR DEPOSITOS ENTRE DOS FECHAS
                 Connection conexionDeposito = Conexion.mySQL("proyecto_final", "root", "");
                 Statement sentenciaDeposito= conexionDeposito.createStatement();
                 String sqlDeposito = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Deposito'";
                 ResultSet resultadoDeposito = sentenciaDeposito.executeQuery(sqlDeposito); 
-                if(resultadoDeposito.next()){
-                    lblDeposito.setText("Deposito: "+resultadoDeposito.getInt("monto"));
-                }else{
-                    }
+                int cantidadDeposito=0;
+                int cantidadTotalDeposito=0;
+                while(resultadoDeposito.next()){
+                    cantidadDeposito=(resultadoDeposito.getInt("monto"));
+                    cantidadTotalDeposito = cantidadTotalDeposito+cantidadDeposito;
+                    lblDeposito.setText("Deposito: "+cantidadTotalDeposito);
+                }
                     //CONSEGUIR RETIRADAS ENTRE DOS FECHAS
                     Connection conexionRetirada = Conexion.mySQL("proyecto_final", "root", "");
                     Statement sentenciaRetirada= conexionRetirada.createStatement();
                     String sqlRetirada = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Retirada'";
                     ResultSet resultadoRetirada = sentenciaRetirada.executeQuery(sqlRetirada);
-                    if(resultadoRetirada.next()){
-                        lblRetirada.setText("Retirada: "+resultadoDeposito.getInt("monto"));
-                    }else{
-                        }
+                    int cantidadRetirada=0;
+                    int cantidadTotalRetirada=0;
+                    while(resultadoRetirada.next()){
+                    cantidadRetirada=(resultadoRetirada.getInt("monto"));
+                    cantidadTotalRetirada = cantidadTotalRetirada+cantidadRetirada;
+                    lblRetirada.setText("Retirada: "+cantidadTotalRetirada);
+                }
                         //CANTIDAD TOTAL DEL ATM - RETIRADA + DEPOSITO
                         Connection conexionCantidad = Conexion.mySQL("proyecto_final", "root", "");
                         Statement sentenciaCantidad= conexionCantidad.createStatement();
@@ -295,8 +343,10 @@ public class ArqueoCajero extends javax.swing.JFrame {
                         }else{
                             JOptionPane.showMessageDialog(this, "La cantidad es erronea", "Error", JOptionPane.ERROR_MESSAGE);
                             }
+         
+                    }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ArqueoCajero.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ArqueoCajero.class.getName()).log(Level.SEVERE, null, ex); 
             }
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -304,6 +354,29 @@ public class ArqueoCajero extends javax.swing.JFrame {
     private void txfLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfLimiteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfLimiteActionPerformed
+
+    private void btnCuadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuadreActionPerformed
+           CuadreCaja CuadreCaja = new CuadreCaja(this.sesion);
+           CuadreCaja.setVisible(true);
+           this.dispose();
+    }//GEN-LAST:event_btnCuadreActionPerformed
+
+    private void jdcInicioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicioPropertyChange
+        try {
+            //SI HAY UN ARQUEO EN LA BASE DE DATOS, RECOGE LA FECHA FIN Y LA COLOCA EN LA FECHA INICIO
+            Connection conexionFecha = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentenciaFecha= conexionFecha.createStatement();
+            String sqlFecha = "SELECT Fecha_Fin FROM arqueos ORDER BY ID_Arqueo DESC LIMIT 1";
+            ResultSet resultadoFecha = sentenciaFecha.executeQuery(sqlFecha);
+            if(resultadoFecha.next()){
+                jdcInicio.setDate(resultadoFecha.getDate("Fecha_Fin"));
+                jdcInicio.setEnabled(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ArqueoCajero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }//GEN-LAST:event_jdcInicioPropertyChange
     
     /**
      * @param args the command line arguments
@@ -470,8 +543,8 @@ public class ArqueoCajero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnArqueo;
+    private javax.swing.JButton btnCuadre;
     private javax.swing.JButton btnRetroceder;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -488,5 +561,4 @@ public class ArqueoCajero extends javax.swing.JFrame {
     private javax.swing.JTextField txfLimite;
     // End of variables declaration//GEN-END:variables
     private Sesion sesion;
-    private javax.swing.table.DefaultTableModel modeloTabla;
 }
