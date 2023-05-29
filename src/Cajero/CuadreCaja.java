@@ -47,7 +47,6 @@ public class CuadreCaja extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txfRetirar = new javax.swing.JTextField();
         txfIngresar = new javax.swing.JTextField();
@@ -71,11 +70,6 @@ public class CuadreCaja extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Retirar dinero:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 100, 30));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Nueva fianza:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -172,9 +166,9 @@ public class CuadreCaja extends javax.swing.JFrame {
         }
     }
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-        ArqueoCajero ArqueoCajero = new ArqueoCajero(this.sesion);
-        ArqueoCajero.setVisible(true);
-        this.dispose();
+            ArqueoCajero ArqueoCajero = new ArqueoCajero(this.sesion);
+            ArqueoCajero.setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnCuadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuadreActionPerformed
@@ -192,6 +186,10 @@ public class CuadreCaja extends javax.swing.JFrame {
                         try {
                         String sDiferencia = diferenciaTexto.substring(diferenciapos + 1).trim();
                         cantidadDiferencia = Integer.parseInt(sDiferencia);
+                        if(cantidadDiferencia == 0){
+                            JOptionPane.showMessageDialog(this, "La diferencia es 0, no hay cuadre disponible", "Error", JOptionPane.INFORMATION_MESSAGE);
+                            return;
+                        }
                         } catch (NumberFormatException e) {
                     }
                 }
@@ -206,7 +204,8 @@ public class CuadreCaja extends javax.swing.JFrame {
                         } catch (NumberFormatException e) {
                     }
                 }
-                    
+                
+                //SI INGRESAS
                 if(txfIngresar.getText().isEmpty()==false && txfRetirar.getText().isEmpty()){
                     int cantidadIngresar = 0;
                 try {
@@ -218,7 +217,7 @@ public class CuadreCaja extends javax.swing.JFrame {
                 //COMPROBAR POSIBLES CASOS
                 if(cantidadDiferencia<0) {
                     if(cantidadIngresar>cantidadDiferencia){
-                         JOptionPane.showMessageDialog(this, "La cantidad a depositar excede la diferencia actual. Se depositará solo la diferencia.", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                         JOptionPane.showMessageDialog(this, "La cantidad a depositar es igual o excede la diferencia actual. Se depositará solo la diferencia.", "Atención", JOptionPane.INFORMATION_MESSAGE);
                          cantidadIngresar=cantidadDiferencia;
                          cantidadIngresar=cantidadIngresar*-1;
                     }else{
@@ -238,6 +237,8 @@ public class CuadreCaja extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Se ha ingresado correctamente el dinero", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 }
                 }
+                
+                //SI RETIRAS
                  if(txfIngresar.getText().isEmpty() && txfRetirar.getText().isEmpty()==false){
                     int cantidadRetirar = 0;
                 try {
@@ -255,10 +256,10 @@ public class CuadreCaja extends javax.swing.JFrame {
                         cantidadDiferencia=cantidadDiferencia + cantidadRetirar;
                         JOptionPane.showMessageDialog(this, "La cantidad a retirar es menor que la diferencia actual. Todavia existe "+cantidadDiferencia+" de diferencia", "Atención", JOptionPane.INFORMATION_MESSAGE);
                     }else{
-                        cantidadRetirar=cantidadRetirar*-1;
+                        cantidadRetirar = cantidadRetirar*-1;
                         cantidadRetirar = cantidadDiferencia;
-                        cantidadRetirar=cantidadRetirar*-1;
-                        JOptionPane.showMessageDialog(this, "La cantidad a retirar excede la diferencia actual. Se retirará solo la diferencia.", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                        cantidadRetirar = cantidadRetirar*-1;
+                        JOptionPane.showMessageDialog(this, "La cantidad a retirar es igual o excede la diferencia actual. Se retirará solo la diferencia.", "Atención", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
                 
@@ -582,7 +583,6 @@ public class CuadreCaja extends javax.swing.JFrame {
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

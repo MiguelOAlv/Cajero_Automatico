@@ -28,6 +28,7 @@ public class Opciones_admin extends javax.swing.JFrame {
      */
 
     public Opciones_admin (Sesion sesion_admin) {
+        setLocationRelativeTo(null);
         initComponents();
         this.ID_Administrador = sesion_admin.getID_Administrador();
         this.Nombre = sesion_admin.getNombre();
@@ -255,6 +256,7 @@ public class Opciones_admin extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed

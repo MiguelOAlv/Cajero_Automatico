@@ -18,7 +18,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        this.cambiarIdioma("Español");
+        this.idioma= new Idioma("Español");
     }
 
     /**
@@ -66,6 +66,11 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.add(btnIngles);
 
         btnFrances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/frances.png"))); // NOI18N
+        btnFrances.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFrancesActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnFrances);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 360, 50));
@@ -78,24 +83,26 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspañolActionPerformed
-            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta();
+            Idioma idioma= new Idioma("Español");
+            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta(idioma);
             Introducir_Tarjeta.setVisible(true);
             this.dispose();
-            cambiarIdioma("Español");
-            
     }//GEN-LAST:event_btnEspañolActionPerformed
 
     private void btnInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInglesActionPerformed
-            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta();
+            Idioma idioma= new Idioma("Ingles");
+            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta(idioma);
             Introducir_Tarjeta.setVisible(true);
             this.dispose();
-            cambiarIdioma("Ingles");
     }//GEN-LAST:event_btnInglesActionPerformed
-    private void cambiarIdioma(String nombreIdioma){
-        Idioma idioma = new Idioma(nombreIdioma);
-        this.setTitle(idioma.getProperty("titulo"));
-        
-    }
+
+    private void btnFrancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrancesActionPerformed
+            Idioma idioma= new Idioma("Frances");
+            Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta(idioma);
+            Introducir_Tarjeta.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_btnFrancesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -138,4 +145,5 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    private Idioma idioma;
 }

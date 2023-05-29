@@ -9,25 +9,30 @@ import java.util.Properties;
 public class Idioma extends Properties{
  
     private static final long serialVersionUID = 1L;
+    private String nombre;
+    
+    public Idioma(String nombre){
  
-    public Idioma(String idioma){
- 
-        //Modificar si quieres añadir mas idiomas
-        //Cambia el nombre de los ficheros o añade los necesarios
-        switch(idioma){
-            case "Español":
-                    getProperties("espanol.properties");
-                    break;
-            case "Ingles":
-                    getProperties("ingles.properties");
-                    break;
-            case "Frances":
-                    getProperties("frances.properties");
-                    break;
-            default:
+        if(nombre.equals("Español")){
+                    this.nombre="Español";
                     getProperties("espanol.properties");
         }
- 
+        else if (nombre.equals("Ingles")){
+                    this.nombre="Ingles";
+                    getProperties("ingles.properties");
+        }
+        else if (nombre.equals("Frances")){
+                    this.nombre="Frances";
+                    getProperties("frances.properties");
+        }
+        else {
+            this.nombre="Español";
+            getProperties("Español");
+        }
+    }
+
+    public String getNombre() {
+        return nombre;
     }
  
     private void getProperties(String idioma) {

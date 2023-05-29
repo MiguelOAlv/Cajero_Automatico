@@ -4,6 +4,8 @@
  */
 package Cajero;
 
+import java.util.Properties;
+
 /**
  *
  * @author Miguel
@@ -36,4 +38,8 @@ public class Metodos {
         */
         return arrobaIndex > 0 && puntoIndex > arrobaIndex + 1 && puntoIndex < correo.length() - 1;//Si cumple las 3 condiciones, devuelve true, si no devuelve false.
     }
+    
+    //Metodo para cargar el idioma
+   
+  
 }

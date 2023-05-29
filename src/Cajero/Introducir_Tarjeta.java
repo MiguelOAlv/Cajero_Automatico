@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -22,10 +23,17 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     /**
      * Creates new form Introducir_Tarjeta
      */
-    public Introducir_Tarjeta() {
+    public Introducir_Tarjeta(Idioma idioma) {
         initComponents();
+        this.idioma=idioma;
+        cargarIdioma(idioma);
     }
-    
+    public void cargarIdioma(Idioma idioma){
+        Properties propiedades = new Idioma(idioma.getNombre());
+        this.setTitle(propiedades.getProperty("Introducir_Tarjeta"));
+        lblIntroduce.setText(propiedades.getProperty("Introduce"));
+        lblTarjeta.setText(propiedades.getProperty("Tarjeta"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,11 +43,12 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTarjeta = new javax.swing.JButton();
+        btnRetroceder = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTarjeta = new javax.swing.JLabel();
+        btnTarjeta = new javax.swing.JButton();
         txfNumeroTarjeta = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblIntroduce = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnToggleAbajo = new javax.swing.JToggleButton();
         btn1 = new javax.swing.JButton();
@@ -61,7 +70,28 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tarjeta.PNG"))); // NOI18N
+        btnRetroceder.setBackground(new java.awt.Color(0, 0, 0));
+        btnRetroceder.setForeground(new java.awt.Color(255, 255, 255));
+        btnRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flecha.png"))); // NOI18N
+        btnRetroceder.setContentAreaFilled(false);
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 40, 40));
+
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("DEL");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 40, 20));
+
+        lblTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTarjeta.setForeground(new java.awt.Color(0, 255, 255));
+        lblTarjeta.setText("de la tarjeta");
+        getContentPane().add(lblTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, 30));
+
+        btnTarjeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tarjeta3.png"))); // NOI18N
         btnTarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnTarjetaMouseEntered(evt);
@@ -76,22 +106,12 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 160, 90));
+        getContentPane().add(txfNumeroTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 200, -1));
 
-        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("DEL");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 40, 20));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel1.setText("de la tarjeta");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 200, 30));
-        getContentPane().add(txfNumeroTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 200, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel3.setText("Introduce el numero");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, 30));
+        lblIntroduce.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblIntroduce.setForeground(new java.awt.Color(0, 255, 255));
+        lblIntroduce.setText("Introduce el numero");
+        getContentPane().add(lblIntroduce, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 200, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_cajero.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
@@ -208,16 +228,16 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
         try {   
         Connection conexion =  conexion=Conexion.mySQL("proyecto_final", "root", "");
         Statement sentencia= conexion.createStatement();
-        String sql = "SELECT COUNT(*) FROM tarjetas_de_credito WHERE ID_tarjeta = "+txfNumeroTarjeta.getText()+"";
+        String sql = "SELECT Bloqueada FROM tarjetas_de_credito WHERE ID_tarjeta = "+txfNumeroTarjeta.getText()+"";
         ResultSet resultado= sentencia.executeQuery(sql);
         if(resultado.next()){
-            int contador = resultado.getInt(1);
-            if(contador>0){
-                Login Login = new Login();
-                Login.setVisible(true);
+            int numBloq = resultado.getInt("Bloqueada");
+            if(numBloq==0){
+                Introducir_PIN Introducir_PIN = new Introducir_PIN(txfNumeroTarjeta.getText(),this.idioma);
+                Introducir_PIN.setVisible(true);
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(this, "Error, no existe ninguna tarjeta con ese numero", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La tarjeta se encuentra bloqueada, acude a la sucursal para desbloquearla.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         } catch (SQLException ex) {
@@ -226,11 +246,11 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTarjetaActionPerformed
     
     private void btnTarjetaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarjetaMouseEntered
-        btnTarjeta.setBounds(430,260,160,70);
+        btnTarjeta.setBounds(430,260,160,75);
     }//GEN-LAST:event_btnTarjetaMouseEntered
 
     private void btnTarjetaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTarjetaMouseExited
-        btnTarjeta.setBounds(430,260,160,100);
+        btnTarjeta.setBounds(430,260,160,105);
     }//GEN-LAST:event_btnTarjetaMouseExited
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
@@ -343,6 +363,12 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAdminActionPerformed
 
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+        Inicio Inicio = new Inicio();
+        Inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRetrocederActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,7 +399,7 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Introducir_Tarjeta().setVisible(true);
+                //new Introducir_Tarjeta().setVisible(true);
             }
         });
     }
@@ -392,13 +418,14 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnAsterisco;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JButton btnTarjeta;
     private javax.swing.JToggleButton btnToggleAbajo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblIntroduce;
+    private javax.swing.JLabel lblTarjeta;
     private javax.swing.JTextField txfNumeroTarjeta;
     // End of variables declaration//GEN-END:variables
-
+    private Idioma idioma;
 }

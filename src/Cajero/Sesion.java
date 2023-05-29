@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -20,17 +22,20 @@ public class Sesion {
     private String ID_Cliente;
     private String Nombre;
     private String Contrasena;
-    private String TarjetaCredito;
+    private String ID_Tarjeta;
     private int pin;
     private LocalDate fecha;
     private Timer timer;
+    private JFrame frameActual;
+    private Idioma idioma;
     
-    // Constructor
+    // Constructor administrador
     public Sesion(int ID_Administrador, String Nombre, String Contrasena) {
         this.ID_Administrador = ID_Administrador;
         this.Nombre = Nombre;
         this.Contrasena = Contrasena;
         this.fecha = LocalDate.now();
+        this.timer=null;
         /*this.timer = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 LocalTime hora = LocalTime.now();
@@ -40,18 +45,51 @@ public class Sesion {
         });
         timer.start();*/
     }
+    // Constructor cliente
+    public Sesion(String ID_Cliente, String Nombre, String ID_Tarjeta, int pin, JFrame frameActual, Idioma idioma) {
+        this.ID_Cliente = ID_Cliente;
+        this.Nombre = Nombre;
+        this.ID_Tarjeta = ID_Tarjeta;
+        this.pin = pin;
+        this.fecha = LocalDate.now();
+        this.idioma = idioma;
+        this.timer = new Timer(60000, new ActionListener(){//Lanzar disparador si pasan 60 segundos de inactividad
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cerrarSesion();
+            }
+        });
+        this.timer.setRepeats(false);//Colocar el timer para que al dispararse no se repita automaticamente
+        this.frameActual = frameActual;
+    }
 
+    public Idioma getIdioma() {
+        return idioma;
+    }
+    //INICIAR TEMPORIZADOR
+    public void iniciarSesion(){
+        this.timer.start();
+    }
+    //RENOVAR EL TEMPORIZADOR
+    public void mantenerSesion(){
+        this.timer.restart();
+    }
+    //CERRAR SESION Y CREAR FRAME DE INICIO
+    private void cerrarSesion(){
+        Inicio Inicio = new Inicio();
+        Inicio.setVisible(true);
+        this.frameActual.dispose();
+        JOptionPane.showMessageDialog(null, "La sesión se ha cerrado por inactividad", "Desconexion", JOptionPane.INFORMATION_MESSAGE);
+    }
+    //METODO PARA SABER EL FRAME ACTUAL Y AL CERRAR SESION CERRAR LA VENTANA
+    public void setFrameActual(JFrame nuevoFrame) {
+    this.frameActual = nuevoFrame;
+    }
+    
     public Timer getTimer() {
         return timer;
     }
-    // Constructor cliente
-    public Sesion(String ID_Cliente, String Nombre, String TarjetaCredito, int pin) {
-        this.ID_Cliente = ID_Cliente;
-        this.Nombre = Nombre;
-        this.TarjetaCredito = TarjetaCredito;
-        this.pin = pin;
-        this.fecha = LocalDate.now();
-    }
+    
     public int getID_Administrador() {
         return ID_Administrador;
     }
@@ -77,11 +115,11 @@ public class Sesion {
     }
 
     public String getTarjetaCredito() {
-        return TarjetaCredito;
+        return ID_Tarjeta;
     }
 
-    public void setTarjetaCredito(String TarjetaCredito) {
-        this.TarjetaCredito = TarjetaCredito;
+    public void setTarjetaCredito(String ID_Tarjeta) {
+        this.ID_Tarjeta = ID_Tarjeta;
     }
 
     public LocalDate getFecha() {
@@ -94,7 +132,7 @@ public class Sesion {
 
     @Override
     public String toString() {
-        return "Sesion{" + "ID_Administrador=" + ID_Administrador + ", ID_Cliente=" + ID_Cliente + ", Nombre=" + Nombre + ", Contrasena=" + Contrasena + ", TarjetaCredito=" + TarjetaCredito + ", pin=" + pin + ", fecha=" + fecha + '}';
+        return "Sesion{" + "ID_Administrador=" + ID_Administrador + ", ID_Cliente=" + ID_Cliente + ", Nombre=" + Nombre + ", Contrasena=" + Contrasena + ", TarjetaCredito=" + ID_Tarjeta + ", pin=" + pin + ", fecha=" + fecha + '}';
     }
     
     

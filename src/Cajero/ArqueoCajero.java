@@ -221,24 +221,31 @@ public class ArqueoCajero extends javax.swing.JFrame {
                 LocalTime horaActual = LocalTime.now();
                 Time horaSql = Time.valueOf(horaActual);
                 
-                String depositoTexto = lblDeposito.getText().trim();
-                int cantidadDeposito=0 ,deppos = depositoTexto.indexOf(":");
-                if (deppos != -1) {
-                    try {
-                    String sDeposito = depositoTexto.substring(deppos + 1).trim();
-                    cantidadDeposito = Integer.parseInt(sDeposito);
-                    } catch (NumberFormatException e) {
+                //CALCULAR LA CANTIDAD DE DEPOSITO QUE HAY SIN CONTAR EL CUADRE DE CAJA HECHO POR EL ADMINISTRADOR (WHERE ID_Tarjeta is not null)
+                Connection conexionDeposito = Conexion.mySQL("proyecto_final", "root", "");
+                Statement sentenciaDeposito= conexionDeposito.createStatement();
+                String sqlDeposito = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Deposito' AND ID_Tarjeta is not null";
+                ResultSet resultadoDeposito = sentenciaDeposito.executeQuery(sqlDeposito); 
+                int cantidadDeposito=0;
+                int cantidadTotalDeposito=0;
+                 while(resultadoDeposito.next()){
+                    cantidadDeposito=(resultadoDeposito.getInt("monto"));
+                    cantidadTotalDeposito = cantidadTotalDeposito+cantidadDeposito;
+                    lblDeposito.setText("Deposito: "+cantidadTotalDeposito);
                 }
+                 //CALCULAR LA CANTIDAD DE RETIRADA QUE HAY SIN CONTAR EL CUADRE DE CAJA HECHO POR EL ADMINISTRADOR (WHERE ID_Tarjeta is not null)
+                Connection conexionRetirada = Conexion.mySQL("proyecto_final", "root", "");
+                Statement sentenciaRetirada= conexionRetirada.createStatement();
+                String sqlRetirada = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Retirada' AND ID_Tarjeta is not null";
+                ResultSet resultadoRetirada = sentenciaRetirada.executeQuery(sqlRetirada);
+                int cantidadRetirada=0;
+                int cantidadTotalRetirada=0;
+                while(resultadoRetirada.next()){
+                    cantidadRetirada=(resultadoRetirada.getInt("monto"));
+                    cantidadTotalRetirada = cantidadTotalRetirada+cantidadRetirada;
+                    lblRetirada.setText("Retirada: "+cantidadTotalRetirada);
                 }
-                String retiradaTexto = lblRetirada.getText().trim();
-                int cantidadRetirada=0 ,retpos = retiradaTexto.indexOf(":");
-                if (retpos != -1) {
-                    try {
-                    String sRetirada = retiradaTexto.substring(retpos + 1).trim();
-                    cantidadRetirada = Integer.parseInt(sRetirada);
-                    } catch (NumberFormatException e) {
-                }
-                }
+                
                 String efectivoTexto = lblEfectivo.getText().trim();
                 int cantidadEfectivo=0 ,efpos = efectivoTexto.indexOf(":");
                 if (efpos != -1) {
@@ -248,7 +255,7 @@ public class ArqueoCajero extends javax.swing.JFrame {
                     } catch (NumberFormatException e) {
                 }
                 }
-                int nuevaCantidad = cantidadEfectivo + cantidadDeposito - cantidadRetirada;
+                int nuevaCantidad = cantidadEfectivo + cantidadTotalDeposito + cantidadTotalRetirada;
                 
                 //COMPROBAR QUE NO HAYA UNA DIFERENCIA EN EL ULTIMO ARQUEO
                 Connection conexionDiferencia = Conexion.mySQL("proyecto_final", "root", "");
@@ -311,7 +318,7 @@ public class ArqueoCajero extends javax.swing.JFrame {
                 //CONSEGUIR DEPOSITOS ENTRE DOS FECHAS
                 Connection conexionDeposito = Conexion.mySQL("proyecto_final", "root", "");
                 Statement sentenciaDeposito= conexionDeposito.createStatement();
-                String sqlDeposito = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Deposito'";
+                String sqlDeposito = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Deposito' AND ID_Tarjeta is not null";
                 ResultSet resultadoDeposito = sentenciaDeposito.executeQuery(sqlDeposito); 
                 int cantidadDeposito=0;
                 int cantidadTotalDeposito=0;
@@ -323,7 +330,7 @@ public class ArqueoCajero extends javax.swing.JFrame {
                     //CONSEGUIR RETIRADAS ENTRE DOS FECHAS
                     Connection conexionRetirada = Conexion.mySQL("proyecto_final", "root", "");
                     Statement sentenciaRetirada= conexionRetirada.createStatement();
-                    String sqlRetirada = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Retirada'";
+                    String sqlRetirada = "SELECT monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND Tipo_transaccion = 'Retirada' AND ID_Tarjeta is not null";
                     ResultSet resultadoRetirada = sentenciaRetirada.executeQuery(sqlRetirada);
                     int cantidadRetirada=0;
                     int cantidadTotalRetirada=0;
