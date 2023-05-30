@@ -227,6 +227,10 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
     private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
         try {   
         Connection conexion =  conexion=Conexion.mySQL("proyecto_final", "root", "");
+        if (conexion == null) {
+        JOptionPane.showMessageDialog(null, "Conexión no establecida");
+        System.exit(0);
+        }else{
         Statement sentencia= conexion.createStatement();
         String sql = "SELECT Bloqueada FROM tarjetas_de_credito WHERE ID_tarjeta = "+txfNumeroTarjeta.getText()+"";
         ResultSet resultado= sentencia.executeQuery(sql);
@@ -239,6 +243,7 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this, "La tarjeta se encuentra bloqueada, acude a la sucursal para desbloquearla.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
         }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error, no existe ninguna tarjeta con ese numero","Error", JOptionPane.ERROR_MESSAGE);

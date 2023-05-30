@@ -48,9 +48,10 @@ public class Introducir_PIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txfPIN = new javax.swing.JPasswordField();
         lblIntroduce = new javax.swing.JLabel();
         lblPIN = new javax.swing.JLabel();
-        txfPIN = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         lblCajero = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnRetroceder = new javax.swing.JButton();
@@ -66,8 +67,8 @@ public class Introducir_PIN extends javax.swing.JFrame {
         btn8 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
         btn0 = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
         btnAsterisco = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -76,6 +77,7 @@ public class Introducir_PIN extends javax.swing.JFrame {
         setIconImages(null);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(txfPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
 
         lblIntroduce.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblIntroduce.setForeground(new java.awt.Color(0, 255, 255));
@@ -87,9 +89,10 @@ public class Introducir_PIN extends javax.swing.JFrame {
         lblPIN.setText("tu PIN secreto:");
         getContentPane().add(lblPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 190, 30));
 
-        txfPIN.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txfPIN.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        getContentPane().add(txfPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("DEL");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 40, 20));
 
         lblCajero.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCajero.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,6 +201,14 @@ public class Introducir_PIN extends javax.swing.JFrame {
         });
         getContentPane().add(btn0, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 40, 20));
 
+        btnAsterisco.setText("jButton1");
+        btnAsterisco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsteriscoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAsterisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 30, -1));
+
         btnBorrar.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         btnBorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -206,14 +217,6 @@ public class Introducir_PIN extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 40, 30));
-
-        btnAsterisco.setText("jButton1");
-        btnAsterisco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsteriscoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAsterisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 30, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -229,15 +232,18 @@ public class Introducir_PIN extends javax.swing.JFrame {
         Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
         if (conexion == null) {
         JOptionPane.showMessageDialog(null, "Conexión no establecida");
+        System.exit(0);
         }else{
             try {
-                String pinIntroducido=txfPIN.getText();
+                char[] pinIntroducido=txfPIN.getPassword();
 
-                if (pinIntroducido.isEmpty()) {
+                if (pinIntroducido.length==0) {
                     JOptionPane.showMessageDialog(null, "Debe introducir un pin", "Error",JOptionPane.ERROR_MESSAGE);
                 } else {
+                    //Pasar la cadena de caracteres de la contraseña a string para hacer la consulta en la bbdd
+                    String sPinIntroducido= new String(pinIntroducido);
                     Statement sentencia = conexion.createStatement();
-                    String sql = "SELECT clientes.Nombre, clientes.ID_Cliente, tarjetas_de_credito.ID_Tarjeta, tarjetas_de_credito.PIN FROM clientes JOIN tarjetas_de_credito ON clientes.ID_Cliente = tarjetas_de_credito.ID_Cliente WHERE PIN = '"+pinIntroducido+"' AND ID_Tarjeta = '"+this.ID_Tarjeta+"';";
+                    String sql = "SELECT clientes.Nombre, clientes.ID_Cliente, tarjetas_de_credito.ID_Tarjeta, tarjetas_de_credito.PIN FROM clientes JOIN tarjetas_de_credito ON clientes.ID_Cliente = tarjetas_de_credito.ID_Cliente WHERE PIN = '"+sPinIntroducido+"' AND ID_Tarjeta = '"+this.ID_Tarjeta+"';";
                     ResultSet resultado_usuario = sentencia.executeQuery(sql);
                     if (resultado_usuario.next()) {
                         String id_usuario = resultado_usuario.getString("ID_Cliente");
@@ -388,11 +394,12 @@ public class Introducir_PIN extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCajero;
     private javax.swing.JLabel lblIntroduce;
     private javax.swing.JLabel lblPIN;
-    private javax.swing.JTextField txfPIN;
+    private javax.swing.JPasswordField txfPIN;
     // End of variables declaration//GEN-END:variables
     private int intentos=2;
     private String ID_Tarjeta;

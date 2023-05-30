@@ -154,7 +154,6 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
-            int contador=0;
             int numeroTarjeta = Integer.parseInt(txfTarjeta.getText());
             Connection conexion_info = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_info = conexion_info.createStatement();

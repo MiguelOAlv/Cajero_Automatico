@@ -94,7 +94,6 @@ public class Opciones_usuario extends javax.swing.JFrame {
                         float cantidad_float = Float.parseFloat(cantidad_efectivo);
                                lblID.setText("ID Cajero: "+String.valueOf(id));
                                lblUbicacion.setText("Ubicación: "+ubicacion);
-                               lblEfectivo.setText("Cantidad de efectivo: "+(int)cantidad_float+ "€");
                             }else{
                                 JOptionPane.showMessageDialog(this, "Error, no se encuentran cajeros en la base de datos","Error", JOptionPane.ERROR_MESSAGE);
                             }
@@ -128,7 +127,6 @@ public class Opciones_usuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
         lblUbicacion = new javax.swing.JLabel();
-        lblEfectivo = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -165,7 +163,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnRetirarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 190, -1));
+        getContentPane().add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 190, -1));
 
         btnDepositar.setBackground(new java.awt.Color(0, 204, 204));
         btnDepositar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -177,7 +175,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnDepositarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDepositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 190, -1));
+        getContentPane().add(btnDepositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 190, -1));
 
         btnFactura.setBackground(new java.awt.Color(0, 204, 204));
         btnFactura.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -189,7 +187,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnFacturaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 190, -1));
+        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 190, -1));
 
         btnPIN.setBackground(new java.awt.Color(0, 204, 204));
         btnPIN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -201,7 +199,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnPINActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 190, -1));
+        getContentPane().add(btnPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 190, -1));
 
         btnMovimientos.setBackground(new java.awt.Color(0, 204, 204));
         btnMovimientos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -213,7 +211,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnMovimientosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 190, -1));
+        getContentPane().add(btnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 190, -1));
 
         btnTransferencia.setBackground(new java.awt.Color(0, 204, 204));
         btnTransferencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -225,7 +223,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnTransferenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 190, -1));
+        getContentPane().add(btnTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 190, -1));
 
         lblHora.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblHora.setForeground(new java.awt.Color(0, 0, 0));
@@ -238,7 +236,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.GridLayout(4, 1, 0, 5));
+        jPanel1.setLayout(new java.awt.GridLayout(3, 1, 0, 5));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -255,12 +253,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         lblUbicacion.setText("Ubicación:");
         jPanel1.add(lblUbicacion);
 
-        lblEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblEfectivo.setForeground(new java.awt.Color(0, 0, 0));
-        lblEfectivo.setText("Cantidad de Efectivo:");
-        jPanel1.add(lblEfectivo);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 360, 90));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 260, 80));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -297,7 +290,9 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPINActionPerformed
 
     private void btnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovimientosActionPerformed
-        // TODO add your handling code here:
+         ConsultarMovimientos ConsultarMovimientos = new ConsultarMovimientos(this.Sesion);
+         ConsultarMovimientos.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnMovimientosActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
@@ -355,7 +350,6 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblEfectivo;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHora1;

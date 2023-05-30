@@ -63,6 +63,10 @@ public class Sesion {
         this.frameActual = frameActual;
     }
 
+    public int getPin() {
+        return pin;
+    }
+
     public Idioma getIdioma() {
         return idioma;
     }
