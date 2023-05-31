@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -48,6 +50,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         });
         this.fecha = LocalDate.now();
         sesion_usuario.setFrameActual(this);
+        initCombo();
         initJLabel();
     }
    public void cargarIdioma(Idioma idioma){
@@ -56,6 +59,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         lblSesion.setText(propiedades.getProperty("lblSesion"));
         lblFecha.setText(propiedades.getProperty("lblFecha"));
         lblHora1.setText(propiedades.getProperty("lblHora"));
+        lblCuenta.setText(propiedades.getProperty("lblCuenta"));
         btnDesconectar.setText(propiedades.getProperty("btnDesconectar"));
         btnRetirar.setText(propiedades.getProperty("btnRetirar"));
         btnDepositar.setText(propiedades.getProperty("btnDepositar"));
@@ -63,6 +67,19 @@ public class Opciones_usuario extends javax.swing.JFrame {
         btnFactura.setText(propiedades.getProperty("btnFactura"));
         btnPIN.setText(propiedades.getProperty("btnPIN"));
         btnMovimientos.setText(propiedades.getProperty("btnMovimientos"));
+    }
+    private void initCombo(){
+        try {
+                Connection conexionCombo = Conexion.mySQL("proyecto_final", "root", "");
+                Statement sentenciaCombo = conexionCombo.createStatement();
+                String sqlCombo = "SELECT ID_Cuenta FROM cuentas WHERE ID_Cliente = '"+this.Sesion.getID_Cliente()+"'";
+                ResultSet resultado = sentenciaCombo.executeQuery(sqlCombo);
+                while(resultado.next()){
+                    cmbCuentas.addItem(resultado.getString("ID_Cuenta"));
+                }
+                 } catch (SQLException ex) {
+            Logger.getLogger(Opciones_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void initJLabel(){
         String nombre_sesion = this.Nombre;
@@ -114,6 +131,8 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         btnDesconectar = new javax.swing.JButton();
+        lblCuenta = new javax.swing.JLabel();
+        cmbCuentas = new javax.swing.JComboBox<>();
         lblSesion = new javax.swing.JLabel();
         btnRetirar = new javax.swing.JButton();
         btnDepositar = new javax.swing.JButton();
@@ -147,6 +166,18 @@ public class Opciones_usuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDesconectar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 140, 40));
+
+        lblCuenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblCuenta.setText("Selecciona la cuenta:");
+        getContentPane().add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 180, 20));
+
+        cmbCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCuentasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 100, -1));
 
         lblSesion.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -253,7 +284,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         lblUbicacion.setText("Ubicación:");
         jPanel1.add(lblUbicacion);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 260, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 260, 70));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -274,9 +305,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        AltaCliente AltaCliente = new AltaCliente(this.Sesion);
-        AltaCliente.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
@@ -300,8 +329,21 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciaActionPerformed
-        // TODO add your handling code here:
+        if(cmbCuentas.getSelectedItem()==null){
+             JOptionPane.showMessageDialog(this, "Error, debe seleccionar una cuenta para poder continuar","Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+        RealizarTransferencia RealizarTransferencia = new RealizarTransferencia(this.Sesion, cuenta);
+        RealizarTransferencia.setVisible(true);
+        this.dispose();
+        }
     }//GEN-LAST:event_btnTransferenciaActionPerformed
+
+    private void cmbCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuentasActionPerformed
+        //SELECCIONAR UN ITEM DEL COMBOBOX Y PASARLO A NUMERO ENTERO
+        String selectedItem = (String) cmbCuentas.getSelectedItem();
+        int selectedInt = Integer.parseInt(selectedItem);
+        this.cuenta= selectedInt;
+    }//GEN-LAST:event_cmbCuentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,9 +389,11 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private javax.swing.JButton btnPIN;
     private javax.swing.JButton btnRetirar;
     private javax.swing.JButton btnTransferencia;
+    private javax.swing.JComboBox<String> cmbCuentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCuenta;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHora1;
@@ -364,4 +408,5 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private LocalDate fecha;
     private Sesion Sesion;
     private Idioma idioma;
+    private int cuenta;
 }

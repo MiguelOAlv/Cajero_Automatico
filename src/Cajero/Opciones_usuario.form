@@ -57,6 +57,40 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="javax.swing.JLabel" name="lblCuenta">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Selecciona la cuenta:"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="400" y="30" width="180" height="20"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbCuentas">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbCuentasActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="480" y="60" width="100" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JLabel" name="lblSesion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -279,7 +313,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="320" y="250" width="260" height="80"/>
+          <AbsoluteConstraints x="320" y="250" width="260" height="70"/>
         </Constraint>
       </Constraints>
 

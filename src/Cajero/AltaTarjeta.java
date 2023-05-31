@@ -53,8 +53,6 @@ public class AltaTarjeta extends javax.swing.JFrame {
         txfPIN = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txfLimite = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txfSaldo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,7 +88,7 @@ public class AltaTarjeta extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 550, 40));
 
-        jPanel1.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
+        jPanel1.setLayout(new java.awt.GridLayout(3, 2, 10, 10));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,12 +107,6 @@ public class AltaTarjeta extends javax.swing.JFrame {
         jLabel5.setText("Limite de credito diario:");
         jPanel1.add(jLabel5);
         jPanel1.add(txfLimite);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Saldo inicial:");
-        jPanel1.add(jLabel6);
-        jPanel1.add(txfSaldo);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 240));
 
@@ -135,13 +127,12 @@ public class AltaTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if(txfDNI.getText().equals("") || txfPIN.getText().equals("") || txfLimite.getText().equals("") || txfSaldo.getText().equals("")){
+        if(txfDNI.getText().equals("") || txfPIN.getText().equals("") || txfLimite.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Debe rellenar todos los campos para poder realizar el alta", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
         String dni = txfDNI.getText();
         String pin = txfPIN.getText();
         String limite = txfLimite.getText();
-        String saldo = txfSaldo.getText();
         LocalDate hoy = LocalDate.now();
         //Se coge la fecha actual y se le suman 5 años para calcular la fecha de vencimiento
         LocalDate cincoAños = hoy.plusYears(5);
@@ -151,28 +142,23 @@ public class AltaTarjeta extends javax.swing.JFrame {
             if(!limite.matches("[0-9]+")){
                 JOptionPane.showMessageDialog(this, "El campo limite solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
-                if(!saldo.matches("[0-9]+")){
-                JOptionPane.showMessageDialog(this, "El campo saldo solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
         try {
             Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaTarjeta;
             sentenciaTarjeta = conexionTarjeta.createStatement();
-            String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Cliente, PIN, Limite_de_credito, Saldo_actual, Fecha_vencimiento)VALUES((SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+pin+"', '"+limite+"','"+saldo+"', '"+cincoAños+"');";
+            String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Cliente, PIN, Limite_de_credito, Fecha_vencimiento)VALUES((SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+pin+"', '"+limite+"','"+cincoAños+"');";
             int resultadoTarjeta = sentenciaTarjeta.executeUpdate(sqlTarjeta);
             if(resultadoTarjeta>0){
                 JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 txfDNI.setText("");
                 txfPIN.setText("");
                 txfLimite.setText("");
-                txfSaldo.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }
                 }
             }
         }
@@ -235,13 +221,11 @@ public class AltaTarjeta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txfDNI;
     private javax.swing.JTextField txfLimite;
     private javax.swing.JTextField txfPIN;
-    private javax.swing.JTextField txfSaldo;
     // End of variables declaration//GEN-END:variables
     private Sesion sesion;
 }

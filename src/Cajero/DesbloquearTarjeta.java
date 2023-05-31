@@ -50,7 +50,6 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblCliente = new javax.swing.JLabel();
         lblLimite = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
         lblVencimiento = new javax.swing.JLabel();
         lblBloqueado = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,7 +110,7 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.GridLayout(6, 1, 10, 10));
+        jPanel1.setLayout(new java.awt.GridLayout(5, 1, 10, 10));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -127,11 +126,6 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
         lblLimite.setForeground(new java.awt.Color(0, 0, 0));
         lblLimite.setText("Limite de credito:");
         jPanel1.add(lblLimite);
-
-        lblSaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblSaldo.setForeground(new java.awt.Color(0, 0, 0));
-        lblSaldo.setText("Saldo actual:");
-        jPanel1.add(lblSaldo);
 
         lblVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblVencimiento.setForeground(new java.awt.Color(0, 0, 0));
@@ -157,15 +151,13 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
             int numeroTarjeta = Integer.parseInt(txfTarjeta.getText());
             Connection conexion_info = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_info = conexion_info.createStatement();
-            String sql_info = "select c.nombre, tdc.Limite_de_credito, tdc.Saldo_actual, tdc.Fecha_vencimiento, tdc.Bloqueada from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+numeroTarjeta+";";
+            String sql_info = "select c.nombre, tdc.Limite_de_credito, tdc.Fecha_vencimiento, tdc.Bloqueada from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+numeroTarjeta+";";
             ResultSet resultado_info = sentencia_info.executeQuery(sql_info);
             if(resultado_info.next()){
                 String nombre = resultado_info.getString("nombre");
                 lblCliente.setText("Cliente: "+nombre);
                 Float limite = resultado_info.getFloat("Limite_de_credito");
                 lblLimite.setText("Limite de credito: "+limite);
-                Float saldo = resultado_info.getFloat("Saldo_actual");
-                lblSaldo.setText("Saldo actual: "+saldo);
                 String fechaVencimiento = resultado_info.getString("Fecha_vencimiento");
                 lblVencimiento.setText("Fecha de vencimiento: "+fechaVencimiento);
                 int bloqueado = resultado_info.getInt("Bloqueada");
@@ -268,7 +260,6 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
     private javax.swing.JLabel lblBloqueado;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblLimite;
-    private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblVencimiento;
     private javax.swing.JTextField txfTarjeta;
     // End of variables declaration//GEN-END:variables

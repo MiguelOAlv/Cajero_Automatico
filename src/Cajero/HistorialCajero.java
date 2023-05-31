@@ -140,7 +140,7 @@ public class HistorialCajero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnVerRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRegistrosActionPerformed
-        if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
+            if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
                 JOptionPane.showMessageDialog(this, "El rango de fechas no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
                 Date fechaInicio = jdcInicio.getDate();
@@ -155,18 +155,16 @@ public class HistorialCajero extends javax.swing.JFrame {
             Statement sentenciaHistorial= conexionHistorial.createStatement();
             String sqlHistorial = "SELECT ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto FROM transacciones_cajeros WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"'";
             ResultSet resultadoHistorial = sentenciaHistorial.executeQuery(sqlHistorial);
-            
-            if(resultadoHistorial.next()) {
-                    Object[] filas = new String[5];
+            modeloTabla.setRowCount(0);
+            Object[] filas = new String[5];
+            while(resultadoHistorial.next()) {
                     filas[0] = resultadoHistorial.getString("ID_Tarjeta");
                     filas[1] = resultadoHistorial.getString("Fecha");
                     filas[2] = resultadoHistorial.getString("Hora");
                     filas[3] = resultadoHistorial.getString("Tipo_transaccion");
                     filas[4] = resultadoHistorial.getString("Monto");
                     modeloTabla.addRow(filas);
-            }else{
-                JOptionPane.showMessageDialog(this, "Error al realizar la busqueda", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(HistorialCajero.class.getName()).log(Level.SEVERE, null, ex);

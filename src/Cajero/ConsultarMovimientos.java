@@ -55,7 +55,7 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
             Properties propiedades = new Idioma(idioma.getNombre());
             this.setTitle(propiedades.getProperty("Consultar Movimientos"));
             btnRetroceder.setText(propiedades.getProperty("btnRetroceder"));
-            btnVerRegistros.setText(propiedades.getProperty("btnCambiar"));
+            btnVerRegistros.setText(propiedades.getProperty("btnVerRegistros"));
             lblInicio.setText(propiedades.getProperty("lblInicio"));
             lblFin.setText(propiedades.getProperty("lblFin"));
     }
@@ -115,14 +115,14 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setResizable(false);
             table.getColumnModel().getColumn(1).setResizable(false);
-            table.getColumnModel().getColumn(1).setPreferredWidth(80);
+            table.getColumnModel().getColumn(1).setPreferredWidth(85);
             table.getColumnModel().getColumn(2).setResizable(false);
             table.getColumnModel().getColumn(3).setResizable(false);
             table.getColumnModel().getColumn(3).setPreferredWidth(100);
             table.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 360, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 360, 230));
 
         lblInicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblInicio.setForeground(new java.awt.Color(0, 0, 0));
@@ -178,7 +178,7 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnVerRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerRegistrosActionPerformed
-        if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
+            if(jdcInicio.getDate()==null || jdcFin.getDate()==null){
                 JOptionPane.showMessageDialog(this, "El rango de fechas no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
                 Date fechaInicio = jdcInicio.getDate();
@@ -193,22 +193,20 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
             Statement sentenciaHistorial= conexionHistorial.createStatement();
             String sqlHistorial = "SELECT ID_Tarjeta, Fecha, Hora, Tipo_movimiento, Monto FROM movimientos WHERE Fecha BETWEEN '"+sFechaInicio+"' AND '"+sFechaFin+"' AND ID_Tarjeta='"+this.Sesion.getTarjetaCredito()+"'";
             ResultSet resultadoHistorial = sentenciaHistorial.executeQuery(sqlHistorial);
-            
-            if(resultadoHistorial.next()) {
-                    Object[] filas = new String[5];
+            DefaultTableModel modeloTabla = (DefaultTableModel) table.getModel();
+            modeloTabla.setRowCount(0);
+            Object[] filas = new String[5];
+            while(resultadoHistorial.next()) {
                     filas[0] = resultadoHistorial.getString("ID_Tarjeta");
                     filas[1] = resultadoHistorial.getString("Fecha");
                     filas[2] = resultadoHistorial.getString("Hora");
                     filas[3] = resultadoHistorial.getString("Tipo_movimiento");
                     filas[4] = resultadoHistorial.getString("Monto");
                     modeloTabla.addRow(filas);
-            }else{
-                JOptionPane.showMessageDialog(this, "Error al realizar la busqueda", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(HistorialCajero.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                }         
+            } catch (SQLException ex) {
+                Logger.getLogger(HistorialCajero.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnVerRegistrosActionPerformed
 

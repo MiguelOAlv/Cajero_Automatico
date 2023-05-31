@@ -4,6 +4,8 @@
  */
 package Cajero;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 /**
@@ -38,8 +40,10 @@ public class Metodos {
         */
         return arrobaIndex > 0 && puntoIndex > arrobaIndex + 1 && puntoIndex < correo.length() - 1;//Si cumple las 3 condiciones, devuelve true, si no devuelve false.
     }
-    
-    //Metodo para cargar el idioma
-   
-  
+
+    public static String formatearFecha(LocalDate fecha){
+         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+         String sFecha = formato.format(fecha);
+         return sFecha;
+    }  
 }

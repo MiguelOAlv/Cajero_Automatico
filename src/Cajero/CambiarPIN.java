@@ -60,25 +60,23 @@ public class CambiarPIN extends javax.swing.JFrame {
             lblActual.setText(propiedades.getProperty("lblActual"));
             btnRetroceder.setText(propiedades.getProperty("btnRetroceder"));
             btnCambiar.setText(propiedades.getProperty("btnCambiar"));
+            btnActualizar.setText(propiedades.getProperty("btnActualizar"));
             lblCliente.setText(propiedades.getProperty("lblCliente"));
             lblInfoTarjeta.setText(propiedades.getProperty("lblInfoTarjeta"));
             lblLimiteCredito.setText(propiedades.getProperty("lblLimiteCredito"));
-            lblSaldo.setText(propiedades.getProperty("lblSaldo"));
             lblVencimiento.setText(propiedades.getProperty("lblVencimiento"));
     }
     private void initJLabel(){
         try {
             Connection conexion_info = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_info = conexion_info.createStatement();
-            String sql_info = "select c.nombre, tdc.Limite_de_credito, tdc.Saldo_actual, tdc.Fecha_vencimiento from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+this.Sesion.getTarjetaCredito()+";";
+            String sql_info = "select c.nombre, tdc.Limite_de_credito,tdc.Fecha_vencimiento from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+this.Sesion.getTarjetaCredito()+";";
             ResultSet resultado_info = sentencia_info.executeQuery(sql_info);
             if(resultado_info.next()){
                 String nombre = resultado_info.getString("nombre");
                 lblCliente.setText(lblCliente.getText()+nombre);
                 int limite = resultado_info.getInt("Limite_de_credito");
                 lblLimiteCredito.setText(lblLimiteCredito.getText()+limite);
-                int saldo = resultado_info.getInt("Saldo_actual");
-                lblSaldo.setText(lblSaldo.getText()+saldo);
                 String fechaVencimiento = resultado_info.getString("Fecha_vencimiento");
                 lblVencimiento.setText(lblVencimiento.getText()+fechaVencimiento);
             }else{
@@ -102,7 +100,6 @@ public class CambiarPIN extends javax.swing.JFrame {
         lblInfoTarjeta = new javax.swing.JLabel();
         lblCliente = new javax.swing.JLabel();
         lblLimiteCredito = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
         lblVencimiento = new javax.swing.JLabel();
         txfActual = new javax.swing.JPasswordField();
         txfNuevo = new javax.swing.JPasswordField();
@@ -126,11 +123,11 @@ public class CambiarPIN extends javax.swing.JFrame {
         lblLimite.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLimite.setForeground(new java.awt.Color(0, 0, 0));
         lblLimite.setText("Establecer limite diario:");
-        getContentPane().add(lblLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 210, -1));
+        getContentPane().add(lblLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 220, 30));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new java.awt.GridLayout(5, 1, 5, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(4, 1, 5, 2));
 
         lblInfoTarjeta.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         lblInfoTarjeta.setForeground(new java.awt.Color(0, 0, 0));
@@ -147,17 +144,12 @@ public class CambiarPIN extends javax.swing.JFrame {
         lblLimiteCredito.setText("Limite de credito:");
         jPanel1.add(lblLimiteCredito);
 
-        lblSaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblSaldo.setForeground(new java.awt.Color(0, 0, 0));
-        lblSaldo.setText("Saldo actual:");
-        jPanel1.add(lblSaldo);
-
         lblVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblVencimiento.setForeground(new java.awt.Color(0, 0, 0));
         lblVencimiento.setText("Fecha de vencimiento:");
         jPanel1.add(lblVencimiento);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 250, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 250, 130));
         getContentPane().add(txfActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 110, 30));
         getContentPane().add(txfNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, 110, 30));
         getContentPane().add(txfConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 110, 30));
@@ -179,7 +171,7 @@ public class CambiarPIN extends javax.swing.JFrame {
                 txfLimiteActionPerformed(evt);
             }
         });
-        getContentPane().add(txfLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 130, 30));
+        getContentPane().add(txfLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 130, 30));
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 2, 250, 0));
 
@@ -346,7 +338,6 @@ public class CambiarPIN extends javax.swing.JFrame {
     private javax.swing.JLabel lblLimite;
     private javax.swing.JLabel lblLimiteCredito;
     private javax.swing.JLabel lblNuevo;
-    private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblVencimiento;
     private javax.swing.JPasswordField txfActual;
     private javax.swing.JPasswordField txfConfirmar;

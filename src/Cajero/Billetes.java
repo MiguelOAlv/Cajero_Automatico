@@ -8,6 +8,9 @@ package Cajero;
  *
  * @author Miguel
  */
-public class Movimientos{
-    
+public class Billetes{
+    private int billete5;
+    private int billete10;
+    private int billete20;
+    private int billete50;
 }
