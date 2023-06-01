@@ -243,6 +243,8 @@ public class Introducir_Tarjeta extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this, "La tarjeta se encuentra bloqueada, acude a la sucursal para desbloquearla.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Error, no existe ninguna tarjeta con ese numero","Error", JOptionPane.ERROR_MESSAGE);
         }
         }
         } catch (SQLException ex) {

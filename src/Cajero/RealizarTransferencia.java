@@ -35,9 +35,7 @@ public class RealizarTransferencia extends javax.swing.JFrame {
 
     public RealizarTransferencia (Sesion sesion_usuario,int cuenta) {
         initComponents();
-        this.ID_Cliente = ID_Cliente;
         this.Nombre = sesion_usuario.getNombre();
-        this.TarjetaCredito = TarjetaCredito;
         this.pin = sesion_usuario.getPin();
         this.cuenta = cuenta;
         this.idioma=sesion_usuario.getIdioma();

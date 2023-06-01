@@ -133,33 +133,48 @@ public class AltaTarjeta extends javax.swing.JFrame {
         String dni = txfDNI.getText();
         String pin = txfPIN.getText();
         String limite = txfLimite.getText();
+        String ID_Cliente="0";
         LocalDate hoy = LocalDate.now();
         //Se coge la fecha actual y se le suman 5 años para calcular la fecha de vencimiento
         LocalDate cincoAños = hoy.plusYears(5);
-        if(validarDNI(dni)==false){
-            JOptionPane.showMessageDialog(this, "El DNI no es valido", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        
+        //Contrastar DNI introducido con clientes en la base de datos con ese DNI
+        try {
+        Connection conexionDNI = Conexion.mySQL("proyecto_final", "root", "");
+        Statement sentenciaDNI= conexionDNI.createStatement();   
+        String sqlDNI = "SELECT ID_Cliente FROM clientes WHERE DNI = '"+dni+"'";
+        ResultSet resultadoDNI = sentenciaDNI.executeQuery(sqlDNI);
+            if(resultadoDNI.next()){
+                ID_Cliente = resultadoDNI.getString("ID_Cliente");
+            }else{
+                JOptionPane.showMessageDialog(this, "El campo dni no se corresponde con ningun cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if(!limite.matches("[0-9]+")){
                 JOptionPane.showMessageDialog(this, "El campo limite solo puede contener datos numericos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }else{
-        try {
-            Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
-            Statement sentenciaTarjeta;
-            sentenciaTarjeta = conexionTarjeta.createStatement();
-            String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Cliente, PIN, Limite_de_credito, Fecha_vencimiento)VALUES((SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+pin+"', '"+limite+"','"+cincoAños+"');";
-            int resultadoTarjeta = sentenciaTarjeta.executeUpdate(sqlTarjeta);
-            if(resultadoTarjeta>0){
-                JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                txfDNI.setText("");
-                txfPIN.setText("");
-                txfLimite.setText("");
-            }else{
-                JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                try{
+                    int numeroTarjeta= Metodos.generarAleatorio();//Generar numero aleatorio para la tarjeta
+                    Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
+                    Statement sentenciaTarjeta;
+                    sentenciaTarjeta = conexionTarjeta.createStatement();
+                    String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Tarjeta,ID_Cliente, PIN, Limite_de_credito, Fecha_vencimiento)VALUES("+numeroTarjeta+","+ID_Cliente+", '"+pin+"', '"+limite+"','"+cincoAños+"');";
+                    int resultadoTarjeta = sentenciaTarjeta.executeUpdate(sqlTarjeta);
+                    if(resultadoTarjeta>0){
+                        JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        txfDNI.setText("");
+                        txfPIN.setText("");
+                        txfLimite.setText("");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
         } catch (SQLException ex) {
             Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                }
             }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed

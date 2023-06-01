@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,11 +35,8 @@ public class Opciones_usuario extends javax.swing.JFrame {
 
     public Opciones_usuario (Sesion sesion_usuario) {
         initComponents();
-        this.ID_Cliente = ID_Cliente;
         this.Nombre = sesion_usuario.getNombre();
-        this.TarjetaCredito = TarjetaCredito;
-        this.pin = pin;
-        this.idioma=sesion_usuario.getIdioma();
+        this.idioma = sesion_usuario.getIdioma();
         cargarIdioma(this.idioma);
         this.Sesion = sesion_usuario;
         this.Sesion.iniciarSesion();
@@ -67,6 +65,13 @@ public class Opciones_usuario extends javax.swing.JFrame {
         btnFactura.setText(propiedades.getProperty("btnFactura"));
         btnPIN.setText(propiedades.getProperty("btnPIN"));
         btnMovimientos.setText(propiedades.getProperty("btnMovimientos"));
+        lblInfoCajero.setText(propiedades.getProperty("lblInfoCajero"));
+        lblID.setText(propiedades.getProperty("lblID"));
+        lblUbicacion.setText(propiedades.getProperty("lblUbicacion"));
+        lblInfoCuenta.setText(propiedades.getProperty("lblInfoCuenta"));
+        lblNumeroCuenta.setText(propiedades.getProperty("lblNumeroCuenta"));
+        lblSaldoCuenta.setText(propiedades.getProperty("lblSaldoCuenta"));
+        lblTipoCuenta.setText(propiedades.getProperty("lblTipoCuenta"));
     }
     private void initCombo(){
         try {
@@ -107,10 +112,8 @@ public class Opciones_usuario extends javax.swing.JFrame {
                     if(contador>0){
                         int id = resultado.getInt("ID_Cajero");
                         String ubicacion = resultado.getString("Ubicacion");
-                        String cantidad_efectivo = resultado.getString("Cantidad_de_efectivo_actual");
-                        float cantidad_float = Float.parseFloat(cantidad_efectivo);
-                               lblID.setText("ID Cajero: "+String.valueOf(id));
-                               lblUbicacion.setText("Ubicación: "+ubicacion);
+                               lblID.setText(lblID.getText()+" "+String.valueOf(id));
+                               lblUbicacion.setText(lblUbicacion.getText()+" "+ubicacion);
                             }else{
                                 JOptionPane.showMessageDialog(this, "Error, no se encuentran cajeros en la base de datos","Error", JOptionPane.ERROR_MESSAGE);
                             }
@@ -131,9 +134,14 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         btnDesconectar = new javax.swing.JButton();
+        lblSesion = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblInfoCuenta = new javax.swing.JLabel();
+        lblNumeroCuenta = new javax.swing.JLabel();
+        lblSaldoCuenta = new javax.swing.JLabel();
+        lblTipoCuenta = new javax.swing.JLabel();
         lblCuenta = new javax.swing.JLabel();
         cmbCuentas = new javax.swing.JComboBox<>();
-        lblSesion = new javax.swing.JLabel();
         btnRetirar = new javax.swing.JButton();
         btnDepositar = new javax.swing.JButton();
         btnFactura = new javax.swing.JButton();
@@ -143,7 +151,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         lblHora = new javax.swing.JLabel();
         lblHora1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblInfoCajero = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
         lblUbicacion = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
@@ -165,24 +173,55 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnDesconectarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDesconectar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 140, 40));
-
-        lblCuenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblCuenta.setForeground(new java.awt.Color(0, 0, 0));
-        lblCuenta.setText("Selecciona la cuenta:");
-        getContentPane().add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 180, 20));
-
-        cmbCuentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCuentasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cmbCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 100, -1));
+        getContentPane().add(btnDesconectar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 140, 40));
 
         lblSesion.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblSesion.setText("Sesión:");
         getContentPane().add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 160, 30));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new java.awt.GridLayout(4, 1, 5, 5));
+
+        lblInfoCuenta.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblInfoCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblInfoCuenta.setText("INFORMACIÓN DE LA CUENTA");
+        jPanel2.add(lblInfoCuenta);
+
+        lblNumeroCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNumeroCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblNumeroCuenta.setText("Numero de cuenta:");
+        jPanel2.add(lblNumeroCuenta);
+
+        lblSaldoCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSaldoCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblSaldoCuenta.setText("Saldo actual:");
+        jPanel2.add(lblSaldoCuenta);
+
+        lblTipoCuenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblTipoCuenta.setText("Tipo de cuenta:");
+        jPanel2.add(lblTipoCuenta);
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 260, 80));
+
+        lblCuenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblCuenta.setText("Selecciona la cuenta:");
+        getContentPane().add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 180, 17));
+
+        cmbCuentas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCuentasItemStateChanged(evt);
+            }
+        });
+        cmbCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCuentasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 160, 20));
 
         btnRetirar.setBackground(new java.awt.Color(0, 204, 204));
         btnRetirar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -194,7 +233,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnRetirarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 190, -1));
+        getContentPane().add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 190, -1));
 
         btnDepositar.setBackground(new java.awt.Color(0, 204, 204));
         btnDepositar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -206,7 +245,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnDepositarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDepositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 190, -1));
+        getContentPane().add(btnDepositar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 190, -1));
 
         btnFactura.setBackground(new java.awt.Color(0, 204, 204));
         btnFactura.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -218,7 +257,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnFacturaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 190, -1));
+        getContentPane().add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 190, -1));
 
         btnPIN.setBackground(new java.awt.Color(0, 204, 204));
         btnPIN.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -230,7 +269,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnPINActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 190, -1));
+        getContentPane().add(btnPIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 190, -1));
 
         btnMovimientos.setBackground(new java.awt.Color(0, 204, 204));
         btnMovimientos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -242,7 +281,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnMovimientosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 190, -1));
+        getContentPane().add(btnMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 190, -1));
 
         btnTransferencia.setBackground(new java.awt.Color(0, 204, 204));
         btnTransferencia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -254,7 +293,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
                 btnTransferenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 190, -1));
+        getContentPane().add(btnTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 190, -1));
 
         lblHora.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblHora.setForeground(new java.awt.Color(0, 0, 0));
@@ -269,10 +308,10 @@ public class Opciones_usuario extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new java.awt.GridLayout(3, 1, 0, 5));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("INFORMACIÓN DEL CAJERO");
-        jPanel1.add(jLabel2);
+        lblInfoCajero.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblInfoCajero.setForeground(new java.awt.Color(0, 0, 0));
+        lblInfoCajero.setText("INFORMACIÓN DEL CAJERO");
+        jPanel1.add(lblInfoCajero);
 
         lblID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblID.setForeground(new java.awt.Color(0, 0, 0));
@@ -284,7 +323,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
         lblUbicacion.setText("Ubicación:");
         jPanel1.add(lblUbicacion);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 260, 70));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 260, 70));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -305,11 +344,15 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-
+        RetirarEfectivo RetirarEfectivo = new RetirarEfectivo(this.Sesion,cuenta);
+        RetirarEfectivo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
-        // TODO add your handling code here:
+        DepositarEfectivo DepositarEfectivo = new DepositarEfectivo(this.Sesion,cuenta);
+        DepositarEfectivo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDepositarActionPerformed
 
     private void btnPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPINActionPerformed
@@ -339,11 +382,38 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTransferenciaActionPerformed
 
     private void cmbCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuentasActionPerformed
-        //SELECCIONAR UN ITEM DEL COMBOBOX Y PASARLO A NUMERO ENTERO
-        String selectedItem = (String) cmbCuentas.getSelectedItem();
-        int selectedInt = Integer.parseInt(selectedItem);
-        this.cuenta= selectedInt;
+            //SELECCIONAR UN ITEM DEL COMBOBOX Y PASARLO A NUMERO ENTERO
+            String sCuentaSeleccionada = (String) cmbCuentas.getSelectedItem();
+            int CuentaSeleccionada = Integer.parseInt(sCuentaSeleccionada);
+            this.cuenta= CuentaSeleccionada;
     }//GEN-LAST:event_cmbCuentasActionPerformed
+
+    private void cmbCuentasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCuentasItemStateChanged
+            //LIMPIAR LOS VALORES EN LOS LABEL
+            lblNumeroCuenta.setText("Número de cuenta:");
+            lblSaldoCuenta.setText("Saldo de la cuenta:");
+            lblTipoCuenta.setText("Tipo de cuenta:");
+            //SELECCIONAR UN ITEM DEL COMBOBOX Y PASARLO A NUMERO ENTERO
+            String sCuentaSeleccionada = (String) cmbCuentas.getSelectedItem();
+            int CuentaSeleccionada = Integer.parseInt(sCuentaSeleccionada);
+            this.cuenta= CuentaSeleccionada;
+            //CARGAR LABELS DE INFORMACIÓN DE CUENTA
+            try {
+            Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentencia_label = conexion.createStatement();
+            String sql = "SELECT ID_Cuenta, Saldo, Tipo_cuenta FROM cuentas WHERE ID_Cuenta = '"+CuentaSeleccionada+"'";
+            ResultSet resultado = sentencia_label.executeQuery(sql);
+            if(resultado.next()){
+                lblNumeroCuenta.setText(lblNumeroCuenta.getText()+" "+resultado.getString("ID_Cuenta"));
+                lblSaldoCuenta.setText(lblSaldoCuenta.getText()+" "+resultado.getString("Saldo"));
+                lblTipoCuenta.setText(lblTipoCuenta.getText()+" "+resultado.getString("Tipo_cuenta"));
+            }else{
+                JOptionPane.showMessageDialog(this, "Error, debe seleccionar una cuenta para poder continuar","Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Opciones_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbCuentasItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -391,14 +461,19 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private javax.swing.JButton btnTransferencia;
     private javax.swing.JComboBox<String> cmbCuentas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCuenta;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblHora1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblInfoCajero;
+    private javax.swing.JLabel lblInfoCuenta;
+    private javax.swing.JLabel lblNumeroCuenta;
+    private javax.swing.JLabel lblSaldoCuenta;
     private javax.swing.JLabel lblSesion;
+    private javax.swing.JLabel lblTipoCuenta;
     private javax.swing.JLabel lblUbicacion;
     // End of variables declaration//GEN-END:variables
     private String ID_Cliente;

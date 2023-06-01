@@ -36,14 +36,6 @@ public class Sesion {
         this.Contrasena = Contrasena;
         this.fecha = LocalDate.now();
         this.timer=null;
-        /*this.timer = new Timer(1000, new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                LocalTime hora = LocalTime.now();
-                DateTimeFormatter formatoHora=DateTimeFormatter.ofPattern("HH:mm:ss");
-                lblHora.setText(formatoHora.format(hora));
-            }
-        });
-        timer.start();*/
     }
     // Constructor cliente
     public Sesion(String ID_Cliente, String Nombre, String ID_Tarjeta, int pin, JFrame frameActual, Idioma idioma) {
@@ -85,7 +77,7 @@ public class Sesion {
         this.frameActual.dispose();
         JOptionPane.showMessageDialog(null, "La sesión se ha cerrado por inactividad", "Desconexion", JOptionPane.INFORMATION_MESSAGE);
     }
-    //METODO PARA SABER EL FRAME ACTUAL Y AL CERRAR SESION CERRAR LA VENTANA
+    //METODO PARA SABER EL FRAME ACTUAL Y AL CERRAR SESION CERRAR LA VENTANA ACTUAL
     public void setFrameActual(JFrame nuevoFrame) {
     this.frameActual = nuevoFrame;
     }
