@@ -41,6 +41,7 @@ public class DepositarEfectivo extends javax.swing.JFrame {
         this.idioma=sesion_usuario.getIdioma();
         cargarIdioma(this.idioma);
         this.Sesion = sesion_usuario;
+        this.Sesion.iniciarSesion();
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

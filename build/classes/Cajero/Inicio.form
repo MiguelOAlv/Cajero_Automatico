@@ -60,14 +60,14 @@
         <Property name="rows" type="int" value="1"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnEspa&#xf1;ol">
+        <Component class="javax.swing.JButton" name="btnEspanol">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/espa&#xf1;ol.PNG"/>
+              <Image iconType="3" name="/img/espanol.PNG"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEspa&#xf1;olActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEspanolActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnIngles">

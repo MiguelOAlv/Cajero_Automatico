@@ -18,7 +18,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        this.idioma= new Idioma("Español");
+        this.idioma= new Idioma("Espanol");
     }
 
     /**
@@ -31,7 +31,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnEspañol = new javax.swing.JButton();
+        btnEspanol = new javax.swing.JButton();
         btnIngles = new javax.swing.JButton();
         btnFrances = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -49,13 +49,13 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.GridLayout(1, 3, 45, 0));
 
-        btnEspañol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/español.PNG"))); // NOI18N
-        btnEspañol.addActionListener(new java.awt.event.ActionListener() {
+        btnEspanol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/espanol.PNG"))); // NOI18N
+        btnEspanol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEspañolActionPerformed(evt);
+                btnEspanolActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEspañol);
+        jPanel1.add(btnEspanol);
 
         btnIngles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ingles.png"))); // NOI18N
         btnIngles.addActionListener(new java.awt.event.ActionListener() {
@@ -82,12 +82,12 @@ public class Inicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspañolActionPerformed
-            Idioma idioma= new Idioma("Español");
+    private void btnEspanolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspanolActionPerformed
+            Idioma idioma= new Idioma("Espanol");
             Introducir_Tarjeta Introducir_Tarjeta = new Introducir_Tarjeta(idioma);
             Introducir_Tarjeta.setVisible(true);
             this.dispose();
-    }//GEN-LAST:event_btnEspañolActionPerformed
+    }//GEN-LAST:event_btnEspanolActionPerformed
 
     private void btnInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInglesActionPerformed
             Idioma idioma= new Idioma("Ingles");
@@ -139,7 +139,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEspañol;
+    private javax.swing.JButton btnEspanol;
     private javax.swing.JButton btnFrances;
     private javax.swing.JButton btnIngles;
     private javax.swing.JLabel jLabel1;

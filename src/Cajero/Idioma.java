@@ -13,8 +13,8 @@ public class Idioma extends Properties{
     
     public Idioma(String nombre){
  
-        if(nombre.equals("Español")){
-                    this.nombre="Español";
+        if(nombre.equals("Espanol")){
+                    this.nombre="Espanol";
                     getProperties("espanol.properties");
         }
         else if (nombre.equals("Ingles")){
@@ -26,8 +26,8 @@ public class Idioma extends Properties{
                     getProperties("frances.properties");
         }
         else {
-            this.nombre="Español";
-            getProperties("Español");
+            this.nombre="Espanol";
+            getProperties("Espanol");
         }
     }
 

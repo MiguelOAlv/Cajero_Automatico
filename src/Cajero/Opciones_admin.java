@@ -32,7 +32,7 @@ public class Opciones_admin extends javax.swing.JFrame {
         initComponents();
         this.ID_Administrador = sesion_admin.getID_Administrador();
         this.Nombre = sesion_admin.getNombre();
-        this.Contrasena = sesion_admin.getContraseña();
+        this.Contrasena = sesion_admin.getContrasena();
         this.Fecha = LocalDate.now();
         this.Sesion = sesion_admin;
         initJLabel();
@@ -70,7 +70,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                         String cantidad_efectivo = resultado.getString("Cantidad_de_efectivo_actual");
                         float cantidad_float = Float.parseFloat(cantidad_efectivo);
                                lblID.setText("ID Cajero: "+String.valueOf(id));
-                               lblUbicacion.setText("Ubicación: "+ubicacion);
+                               lblUbicacion.setText("Ubicacion: "+ubicacion);
                                lblEfectivo.setText("Cantidad de efectivo: "+(int)cantidad_float+ "€");
                             }else{
                                 JOptionPane.showMessageDialog(this, "Error, no se encuentran cajeros en la base de datos","Error", JOptionPane.ERROR_MESSAGE);

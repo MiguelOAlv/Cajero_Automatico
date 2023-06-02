@@ -3,19 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Cajero;
-import static Cajero.Metodos.validarDNI;
 import Conexion_bd.Conexion;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -135,8 +131,8 @@ public class AltaTarjeta extends javax.swing.JFrame {
         String limite = txfLimite.getText();
         String ID_Cliente="0";
         LocalDate hoy = LocalDate.now();
-        //Se coge la fecha actual y se le suman 5 años para calcular la fecha de vencimiento
-        LocalDate cincoAños = hoy.plusYears(5);
+        //Se coge la fecha actual y se le suman 5 anos para calcular la fecha de vencimiento
+        LocalDate cincoAnos = hoy.plusYears(5);
         
         //Contrastar DNI introducido con clientes en la base de datos con ese DNI
         try {
@@ -162,15 +158,15 @@ public class AltaTarjeta extends javax.swing.JFrame {
                     Connection conexionTarjeta = Conexion.mySQL("proyecto_final", "root", "");
                     Statement sentenciaTarjeta;
                     sentenciaTarjeta = conexionTarjeta.createStatement();
-                    String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Tarjeta,ID_Cliente, PIN, Limite_de_credito, Fecha_vencimiento)VALUES("+numeroTarjeta+","+ID_Cliente+", '"+pin+"', '"+limite+"','"+cincoAños+"');";
+                    String sqlTarjeta = "INSERT INTO tarjetas_de_credito(ID_Tarjeta,ID_Cliente, PIN, Limite_de_credito, Fecha_vencimiento)VALUES("+numeroTarjeta+","+ID_Cliente+", '"+pin+"', '"+limite+"','"+cincoAnos+"');";
                     int resultadoTarjeta = sentenciaTarjeta.executeUpdate(sqlTarjeta);
                     if(resultadoTarjeta>0){
-                        JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "La tarjeta se ha dado de alta correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
                         txfDNI.setText("");
                         txfPIN.setText("");
                         txfLimite.setText("");
                     }else{
-                        JOptionPane.showMessageDialog(this, "Error al realizar la inserción", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error al realizar la insercion", "Error", JOptionPane.ERROR_MESSAGE);
                     }
         } catch (SQLException ex) {
             Logger.getLogger(AltaTarjeta.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,7 +220,7 @@ public class AltaTarjeta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new AltaCliente2().setVisible(true);
+                
             }
         });
     }

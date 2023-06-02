@@ -41,8 +41,8 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
         initComponents();
         this.Sesion = sesion_usuario;
         this.idioma= sesion_usuario.getIdioma();
+        this.Sesion.iniciarSesion();
         this.addMouseListener(new MouseAdapter() {
-            @Override
             public void mouseClicked(MouseEvent e) {
                 sesion_usuario.mantenerSesion();
             }

@@ -231,7 +231,7 @@ public class Introducir_PIN extends javax.swing.JFrame {
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
         Connection conexion = Conexion.mySQL("proyecto_final", "root", "");
         if (conexion == null) {
-        JOptionPane.showMessageDialog(null, "Conexión no establecida");
+        JOptionPane.showMessageDialog(null, "Conexion no establecida");
         System.exit(0);
         }else{
             try {
@@ -240,7 +240,7 @@ public class Introducir_PIN extends javax.swing.JFrame {
                 if (pinIntroducido.length==0) {
                     JOptionPane.showMessageDialog(null, "Debe introducir un pin", "Error",JOptionPane.ERROR_MESSAGE);
                 } else {
-                    //Pasar la cadena de caracteres de la contraseña a string para hacer la consulta en la bbdd
+                    //Pasar la cadena de caracteres de la contrasena a string para hacer la consulta en la bbdd
                     String sPinIntroducido= new String(pinIntroducido);
                     Statement sentencia = conexion.createStatement();
                     String sql = "SELECT clientes.Nombre, clientes.ID_Cliente, tarjetas_de_credito.ID_Tarjeta, tarjetas_de_credito.PIN FROM clientes JOIN tarjetas_de_credito ON clientes.ID_Cliente = tarjetas_de_credito.ID_Cliente WHERE PIN = '"+sPinIntroducido+"' AND ID_Tarjeta = '"+this.ID_Tarjeta+"';";
@@ -261,7 +261,7 @@ public class Introducir_PIN extends javax.swing.JFrame {
                             String sqlBloqueo = "UPDATE tarjetas_de_credito SET Bloqueada = 1 WHERE ID_Tarjeta = '"+this.ID_Tarjeta+"';";
                             int resultadoBloqueo = sentenciaBloqueo.executeUpdate(sqlBloqueo);
                             if(resultadoBloqueo>0){
-                            JOptionPane.showMessageDialog(null, "Tarjeta bloqueada por exceso de intentos. El programa se cerrará.");
+                            JOptionPane.showMessageDialog(null, "Tarjeta bloqueada por exceso de intentos. El programa se cerrara.");
                             System.exit(0);
                             }
                         }

@@ -39,8 +39,8 @@ public class CambiarPIN extends javax.swing.JFrame {
         this.Sesion = sesion_usuario;
         this.Nombre = sesion_usuario.getNombre();
         this.idioma=sesion_usuario.getIdioma();
+        this.Sesion.iniciarSesion();
         this.addMouseListener(new MouseAdapter() {
-            @Override
             public void mouseClicked(MouseEvent e) {
                 sesion_usuario.mantenerSesion();
             }
@@ -131,7 +131,7 @@ public class CambiarPIN extends javax.swing.JFrame {
 
         lblInfoTarjeta.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         lblInfoTarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        lblInfoTarjeta.setText("INFORMACIÓN DE LA TARJETA");
+        lblInfoTarjeta.setText("INFORMACION DE LA TARJETA");
         jPanel1.add(lblInfoTarjeta);
 
         lblCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

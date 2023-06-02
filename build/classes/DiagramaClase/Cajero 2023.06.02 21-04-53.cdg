@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Cajero">
+  <ClassDiagramComponents>
+    <Class name="AltaCliente" package="Cajero" visibility="public" xPosition="4501.0" yPosition="1258.0">
+      <Fields>
+        <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="txfApellidos" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfCorreo" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfDireccion" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfNombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfTelefono" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnConfirmarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AltaCuenta" package="Cajero" visibility="public" xPosition="4501.0" yPosition="1868.0">
+      <Fields>
+        <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jdcApertura" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="txfDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfSaldo" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfTipo" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnConfirmarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AltaTarjeta" package="Cajero" visibility="public" xPosition="4187.0" yPosition="2403.0">
+      <Fields>
+        <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="txfDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfLimite" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfPIN" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnConfirmarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ArqueoCajero" package="Cajero" visibility="public" xPosition="1578.0" yPosition="3197.0">
+      <Fields>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnArqueo" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnCuadre" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jdcFin" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="jdcInicio" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="lblCajero" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblDeposito" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblEfectivo" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblLimite" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblRetirada" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfLimite" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnArqueoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txfLimiteActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnCuadreActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jdcInicioPropertyChange" returnType="void" visibility="private">
+          <Argument type="java.beans.PropertyChangeEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Billetes" package="Cajero" visibility="public" xPosition="1420.0" yPosition="1166.0">
+      <Fields>
+        <Field name="billete5" type="int" visibility="private"/>
+        <Field name="billete10" type="int" visibility="private"/>
+        <Field name="billete20" type="int" visibility="private"/>
+        <Field name="billete50" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="CambiarPIN" package="Cajero" visibility="public" xPosition="1707.0" yPosition="38.0">
+      <Fields>
+        <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnCambiar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblActual" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblCliente" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblConfirmar" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblInfoTarjeta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblLimite" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblLimiteCredito" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblNuevo" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblVencimiento" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfActual" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="txfConfirmar" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="txfLimite" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfNuevo" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initJLabel" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnCambiarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnActualizarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="txfLimiteActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ConsultarMovimientos" package="Cajero" visibility="public" xPosition="2333.0" yPosition="1360.0">
+      <Fields>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnVerRegistros" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jdcFin" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="jdcInicio" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="lblFin" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblInicio" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="table" type="javax.swing.JTable" visibility="private"/>
+        <Field name="modeloTabla" type="javax.swing.table.DefaultTableModel" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnVerRegistrosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CuadreCaja" package="Cajero" visibility="public" xPosition="2515.0" yPosition="51.0">
+      <Fields>
+        <Field name="btnCuadre" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblCajero" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblDiferencia" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblFecha" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblTotalContado" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblTotalEsperado" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfIngresar" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfRetirar" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+        <Field name="modeloTabla" type="javax.swing.table.DefaultTableModel" visibility="private"/>
+        <Field name="nuevaCantidad" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="initJLabel" returnType="void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnCuadreActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DepositarEfectivo" package="Cajero" visibility="public" xPosition="3237.0" yPosition="51.0">
+      <Fields>
+        <Field name="btnDepositar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+          <Argument type="int" name="cuenta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDepositarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DesbloquearTarjeta" package="Cajero" visibility="public" xPosition="3909.0" yPosition="3318.0">
+      <Fields>
+        <Field name="btnAceptar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDesbloquear" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblBloqueado" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblCliente" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblLimite" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblVencimiento" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfTarjeta" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnAceptarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDesbloquearActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="HistorialCajero" package="Cajero" visibility="public" xPosition="2537.0" yPosition="3387.0">
+      <Fields>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnVerRegistros" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jdcFin" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="jdcInicio" type="com.toedter.calendar.JDateChooser" visibility="private"/>
+        <Field name="table" type="javax.swing.JTable" visibility="private"/>
+        <Field name="sesion" type="Sesion" visibility="private"/>
+        <Field name="modeloTabla" type="javax.swing.table.DefaultTableModel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initTable" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnVerRegistrosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Idioma" package="Cajero" visibility="public" xPosition="1430.0" yPosition="1704.0">
+      <Fields>
+        <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getProperties" returnType="void" visibility="private">
+          <Argument type="String" name="idioma"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Inicio" package="Cajero" visibility="public" xPosition="89.0" yPosition="1882.0">
+      <Fields>
+        <Field name="btnEspanol" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnFrances" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnIngles" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnEspanolActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnInglesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnFrancesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Introducir_PIN" package="Cajero" visibility="public" xPosition="89.0" yPosition="897.0">
+      <Fields>
+        <Field name="btn0" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn6" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn7" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn8" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn9" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAcceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAsterisco" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnBorrar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblCajero" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblIntroduce" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblPIN" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfPIN" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="intentos" type="int" visibility="private"/>
+        <Field name="ID_Tarjeta" type="String" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="ID_Tarjeta"/>
+          <Argument type="Idioma" name="idioma"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAccederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn4ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn5ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn6ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn7ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn8ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn9ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn0ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAsteriscoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Introducir_Tarjeta" package="Cajero" visibility="public" xPosition="688.0" yPosition="2416.0">
+      <Fields>
+        <Field name="btn0" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn5" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn6" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn7" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn8" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btn9" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAdmin" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAsterisco" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnBorrar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTarjeta" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnToggleAbajo" type="javax.swing.JToggleButton" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblIntroduce" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblTarjeta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfNumeroTarjeta" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnTarjetaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnTarjetaMouseEntered" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="btnTarjetaMouseExited" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="btn1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn3ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn4ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn5ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn6ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn7ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn8ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn9ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btn0ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAsteriscoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnToggleAbajoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAdminActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Metodos" package="Cajero" visibility="public" xPosition="1345.0" yPosition="929.0">
+      <Fields>
+        <Field name="numerosGenerados" type="Set&lt;Integer&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="validarDNI" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="validarCorreo" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="correo"/>
+        </Method>
+        <Method name="formatearFecha" returnType="String" visibility="public" isStatic="true">
+          <Argument type="LocalDate" name="fecha"/>
+        </Method>
+        <Method name="generarAleatorio" returnType="int" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Opciones_admin" package="Cajero" visibility="public" xPosition="3224.0" yPosition="3064.0">
+      <Fields>
+        <Field name="btnAltaCuenta" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAltaTarjeta" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnAltaUsuario" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnApagar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnArqueo" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDesbloquear" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDesconectar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnHistorial" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblEfectivo" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblFecha" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblHora" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblID" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblSesion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblUbicacion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="ID_Administrador" type="int" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="Contrasena" type="String" visibility="private"/>
+        <Field name="Fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_admin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSesion" returnType="Sesion" visibility="public"/>
+        <Method name="initJLabel" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnDesconectarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnApagarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAltaUsuarioActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDesbloquearActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAltaCuentaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnAltaTarjetaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnHistorialActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnArqueoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Opciones_usuario" package="Cajero" visibility="public" xPosition="3968.0" yPosition="170.0">
+      <Fields>
+        <Field name="btnDepositar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDesconectar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnFactura" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnMovimientos" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnPIN" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetirar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTransferencia" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cmbCuentas" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblCuenta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblFecha" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblHora" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblHora1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblID" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblInfoCajero" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblInfoCuenta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblNumeroCuenta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblSaldoCuenta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblSesion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblTipoCuenta" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblUbicacion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initCombo" returnType="void" visibility="private"/>
+        <Method name="initJLabel" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnDesconectarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRetirarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDepositarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnPINActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnMovimientosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnFacturaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnTransferenciaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cmbCuentasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="cmbCuentasItemStateChanged" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ItemEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PagarFactura" package="Cajero" visibility="public" xPosition="1983.0" yPosition="1911.0">
+      <Fields>
+        <Field name="btnFactura" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+          <Argument type="int" name="cuenta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnFacturaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RealizarTransferencia" package="Cajero" visibility="public" xPosition="543.0" yPosition="218.0">
+      <Fields>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTransferencia2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblConfirmar" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblCuentaBeneficiaria" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblImporte" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblNombreApellido" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfCuenta" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfImporte" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfNombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfPIN" type="javax.swing.JPasswordField" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+          <Argument type="int" name="cuenta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnTransferencia2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RetirarEfectivo" package="Cajero" visibility="public" xPosition="1504.0" yPosition="2493.0">
+      <Fields>
+        <Field name="btnRetirar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+          <Argument type="int" name="cuenta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnRetirarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sesion" package="Cajero" visibility="public" xPosition="3274.0" yPosition="1568.0">
+      <Fields>
+        <Field name="ID_Administrador" type="int" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="Contrasena" type="String" visibility="private"/>
+        <Field name="ID_Tarjeta" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="timer" type="Timer" visibility="private"/>
+        <Field name="frameActual" type="JFrame" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="ID_Administrador"/>
+          <Argument type="String" name="Nombre"/>
+          <Argument type="String" name="Contrasena"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="ID_Cliente"/>
+          <Argument type="String" name="Nombre"/>
+          <Argument type="String" name="ID_Tarjeta"/>
+          <Argument type="int" name="pin"/>
+          <Argument type="JFrame" name="frameActual"/>
+          <Argument type="Idioma" name="idioma"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPin" returnType="int" visibility="public"/>
+        <Method name="getIdioma" returnType="Idioma" visibility="public"/>
+        <Method name="iniciarSesion" returnType="void" visibility="public"/>
+        <Method name="mantenerSesion" returnType="void" visibility="public"/>
+        <Method name="cerrarSesion" returnType="void" visibility="private"/>
+        <Method name="setFrameActual" returnType="void" visibility="public">
+          <Argument type="JFrame" name="nuevoFrame"/>
+        </Method>
+        <Method name="getTimer" returnType="Timer" visibility="public"/>
+        <Method name="getID_Administrador" returnType="int" visibility="public"/>
+        <Method name="getID_Cliente" returnType="String" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="Nombre"/>
+        </Method>
+        <Method name="getContrasena" returnType="String" visibility="public"/>
+        <Method name="setContrasena" returnType="void" visibility="public">
+          <Argument type="String" name="Contrasena"/>
+        </Method>
+        <Method name="getTarjetaCredito" returnType="String" visibility="public"/>
+        <Method name="setTarjetaCredito" returnType="void" visibility="public">
+          <Argument type="String" name="ID_Tarjeta"/>
+        </Method>
+        <Method name="getFecha" returnType="LocalDate" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="fecha"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="idioma" source="Cajero.ConsultarMovimientos" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.DepositarEfectivo" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Sesion" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.RetirarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.AltaTarjeta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.RealizarTransferencia" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Sesion" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.ConsultarMovimientos" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.PagarFactura" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Opciones_usuario" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Opciones_admin" target="Cajero.Sesion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.CambiarPIN" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.CambiarPIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.ConsultarMovimientos" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.AltaCuenta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.CuadreCaja" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.AltaCliente" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.DepositarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.RetirarEfectivo" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.DesbloquearTarjeta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.HistorialCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.RealizarTransferencia" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.CambiarPIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Introducir_PIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.Opciones_admin" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.RetirarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Opciones_usuario" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.PagarFactura" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Introducir_PIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.PagarFactura" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Inicio" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.ArqueoCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.Opciones_usuario" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.RealizarTransferencia" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.DepositarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

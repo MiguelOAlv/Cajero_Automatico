@@ -340,6 +340,7 @@ public class Opciones_usuario extends javax.swing.JFrame {
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
         Inicio Inicio = new Inicio();
         Inicio.setVisible(true);
+        this.Sesion.getTimer().stop();
         this.dispose();
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
@@ -368,7 +369,9 @@ public class Opciones_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMovimientosActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+         PagarFactura PagarFactura = new PagarFactura(this.Sesion,cuenta);
+         PagarFactura.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciaActionPerformed

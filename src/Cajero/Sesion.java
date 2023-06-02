@@ -46,7 +46,6 @@ public class Sesion {
         this.fecha = LocalDate.now();
         this.idioma = idioma;
         this.timer = new Timer(60000, new ActionListener(){//Lanzar disparador si pasan 60 segundos de inactividad
-            @Override
             public void actionPerformed(ActionEvent e){
                 cerrarSesion();
             }
@@ -76,6 +75,7 @@ public class Sesion {
         Inicio.setVisible(true);
         this.frameActual.dispose();
         JOptionPane.showMessageDialog(null, "La sesión se ha cerrado por inactividad", "Desconexion", JOptionPane.INFORMATION_MESSAGE);
+        timer.stop();
     }
     //METODO PARA SABER EL FRAME ACTUAL Y AL CERRAR SESION CERRAR LA VENTANA ACTUAL
     public void setFrameActual(JFrame nuevoFrame) {
@@ -102,12 +102,12 @@ public class Sesion {
         this.Nombre = Nombre;
     }
 
-    public String getContraseña() {
+    public String getContrasena() {
         return Contrasena;
     }
 
-    public void setContraseña(String Contraseña) {
-        this.Contrasena = Contraseña;
+    public void setContrasena(String Contrasena) {
+        this.Contrasena = Contrasena;
     }
 
     public String getTarjetaCredito() {
