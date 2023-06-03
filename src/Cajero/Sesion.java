@@ -28,6 +28,8 @@ public class Sesion {
     private Timer timer;
     private JFrame frameActual;
     private Idioma idioma;
+
+    
     
     // Constructor administrador
     public Sesion(int ID_Administrador, String Nombre, String Contrasena) {
@@ -53,7 +55,7 @@ public class Sesion {
         this.timer.setRepeats(false);//Colocar el timer para que al dispararse no se repita automaticamente
         this.frameActual = frameActual;
     }
-
+    
     public int getPin() {
         return pin;
     }

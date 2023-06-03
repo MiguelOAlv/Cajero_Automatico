@@ -63,4 +63,31 @@ public class Metodos {
         numerosGenerados.add(numero);
         return numero;
     }
+   
+       //Se introduce en un array los billetes a contar de distintos tipos.
+       public static int[] reparto(int cantidadTotal){
+            //Crear array de tiposbilletes y billetes
+            int[] tiposBillete = new int[]{50,20,10,5};
+            int[] billetes = new int[4];
+            for (int i = 0; i < 4; i++) {
+                billetes[i] = cantidadTotal / tiposBillete[i];//En cada iteracion de billetes, agrega la cantidad de billetes de cada tipo que viene de la cantidadTotal entre el tipo de billete.
+                cantidadTotal = cantidadTotal % tiposBillete[i];//Calcula el resto, pasadas las 4 iteraciones, el resto debe de ser 0
+            }
+            return billetes;
+    }
+       //Si la cantidad es mayor a 50, se llama al metodo reparto para que devuelva un array de billetes y se le suman los billetes correspondientes a los ultimos 50
+       public static int[] entregarDinero(int cantidadTotal){
+           int[] billetes = new int[4];
+           if(cantidadTotal >=50){
+               cantidadTotal = cantidadTotal-50;
+               billetes = reparto(cantidadTotal);
+               //Sumar los billetes necesarios para hacer los ultimos 50 de la cantidad
+               billetes[1] = billetes[1]+1;//Equivale a los billetes de 20
+               billetes[2] = billetes[2]+2;//Equivale a los billetes de 10
+               billetes[3] = billetes[3]+2;//Equivale a los billetes de 5
+           }else{
+               billetes = reparto(cantidadTotal);
+           }
+            return billetes;
+       }
 }

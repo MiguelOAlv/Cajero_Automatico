@@ -35,9 +35,11 @@ public class RetirarEfectivo extends javax.swing.JFrame {
 
     public RetirarEfectivo (Sesion sesion_usuario,int cuenta) {
         initComponents();
+        this.ID_Cliente=sesion_usuario.getID_Cliente();
         this.Nombre = sesion_usuario.getNombre();
         this.pin = sesion_usuario.getPin();
         this.cuenta = cuenta;
+        this.TarjetaCredito=sesion_usuario.getTarjetaCredito();
         this.idioma=sesion_usuario.getIdioma();
         cargarIdioma(this.idioma);
         this.Sesion = sesion_usuario;
@@ -53,9 +55,10 @@ public class RetirarEfectivo extends javax.swing.JFrame {
     }
    public void cargarIdioma(Idioma idioma){
         Properties propiedades = new Idioma(idioma.getNombre());
-        this.setTitle(propiedades.getProperty("RealizarTransferencia"));
-        btnRetirar.setText(propiedades.getProperty("btnTransferencia2"));
+        this.setTitle(propiedades.getProperty("RetirarEfectivo"));
+        btnRetirar2.setText(propiedades.getProperty("btnRetirar2"));
         btnRetroceder.setText(propiedades.getProperty("btnRetroceder"));
+        lblSeleccion.setText(propiedades.getProperty("lblSeleccion"));
     }
     
 
@@ -68,9 +71,11 @@ public class RetirarEfectivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblSeleccion = new javax.swing.JLabel();
+        txfCantidad = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnRetroceder = new javax.swing.JButton();
-        btnRetirar = new javax.swing.JButton();
+        btnRetirar2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,6 +83,12 @@ public class RetirarEfectivo extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSeleccion.setForeground(new java.awt.Color(0, 0, 0));
+        lblSeleccion.setText("Seleccione la cantidad que desea retirar:");
+        getContentPane().add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 350, 30));
+        getContentPane().add(txfCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 240, 40));
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0, 250, 0));
 
@@ -93,17 +104,17 @@ public class RetirarEfectivo extends javax.swing.JFrame {
         });
         jPanel2.add(btnRetroceder);
 
-        btnRetirar.setBackground(new java.awt.Color(51, 255, 51));
-        btnRetirar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRetirar.setForeground(new java.awt.Color(0, 0, 0));
-        btnRetirar.setText("Retirar");
-        btnRetirar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+        btnRetirar2.setBackground(new java.awt.Color(51, 255, 51));
+        btnRetirar2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRetirar2.setForeground(new java.awt.Color(0, 0, 0));
+        btnRetirar2.setText("Retirar");
+        btnRetirar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRetirar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetirarActionPerformed(evt);
+                btnRetirar2ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRetirar);
+        jPanel2.add(btnRetirar2);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 540, 40));
 
@@ -120,9 +131,57 @@ public class RetirarEfectivo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
-    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        
-    }//GEN-LAST:event_btnRetirarActionPerformed
+    private void btnRetirar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirar2ActionPerformed
+        if(txfCantidad.getText().equals("") || Integer.parseInt(txfCantidad.getText())%5!=0 ){
+            JOptionPane.showMessageDialog(this, "Debe introducir una cantidad multiplo de 5 para poder retirar", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            try {
+            Connection conexionRetirar = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentenciaRetirar = conexionRetirar.createStatement();
+            String sqlRetirar = "SELECT Saldo FROM cuentas WHERE ID_Cliente = "+this.ID_Cliente+" AND ID_Cuenta="+this.cuenta+";";
+            ResultSet resultadoRetirar = sentenciaRetirar.executeQuery(sqlRetirar);
+            if(resultadoRetirar.next()){
+                int saldo = resultadoRetirar.getInt("Saldo");
+                int cantidadRetirar = Integer.parseInt(txfCantidad.getText());
+                if(saldo<cantidadRetirar){
+                    JOptionPane.showMessageDialog(this, "No tiene saldo suficiente para realizar la retirada", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    //ACTUALIZAR EL SALDO DE LA CUENTA QUE RETIRA DINERO
+                    Connection conexionRetirar2 = Conexion.mySQL("proyecto_final", "root", "");
+                    Statement sentenciaRetirar2 = conexionRetirar2.createStatement();
+                    int nuevaCantidad = saldo-cantidadRetirar;
+                    String sqlRetirar2 = "UPDATE cuentas SET saldo = '"+nuevaCantidad+"' WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Cuenta='"+this.cuenta+"'";
+                    int resultadoRetirar2 = sentenciaRetirar2.executeUpdate(sqlRetirar2);
+                    
+                    //AÑADIR OPERACION A LA TABLA DE MOVIMIENTOS
+                    Connection conexionMovimientos = Conexion.mySQL("proyecto_final", "root", "");
+                    Statement sentenciaMovimientos = conexionMovimientos.createStatement();
+                    LocalTime hora=LocalTime.now();
+                    String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada',"+cantidadRetirar+");";
+                    int resultadoMovimientos = sentenciaMovimientos.executeUpdate(sqlMovimientos);
+                    
+                    //AÑADIR RETIRADA A LA TABLA DE TRANSACCIONES
+                    Connection conexionTransaccion = Conexion.mySQL("proyecto_final", "root", "");
+                    Statement sentenciaTransaccion = conexionTransaccion.createStatement();
+                    String sqlTransaccion = "INSERT INTO transacciones_cajeros (ID_Cajero, ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto) VALUES ('1',"+this.TarjetaCredito+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada','"+cantidadRetirar+"');";
+                    int resultadoTransaccion = sentenciaTransaccion.executeUpdate(sqlTransaccion);
+                    
+                     
+                    if(resultadoRetirar2>0 && resultadoMovimientos>0 && resultadoTransaccion>0){
+                        JOptionPane.showMessageDialog(this, "Se ha retirado el dinero correctamente, proceda a recogerlo", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        ObtenerDinero ObtenerDinero = new ObtenerDinero(this.Sesion, cantidadRetirar);
+                        ObtenerDinero.setVisible(true);
+                        this.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error en la retirada, intentelo de nuevo o consulte con el administrador", "Error", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(RetirarEfectivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnRetirar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,10 +226,12 @@ public class RetirarEfectivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRetirar;
+    private javax.swing.JButton btnRetirar2;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblSeleccion;
+    private javax.swing.JTextField txfCantidad;
     // End of variables declaration//GEN-END:variables
     private String ID_Cliente;
     private String Nombre;

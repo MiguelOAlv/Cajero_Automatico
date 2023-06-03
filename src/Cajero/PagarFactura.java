@@ -31,6 +31,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -117,7 +118,7 @@ public class PagarFactura extends javax.swing.JFrame {
         jPanel1.add(jLabel4);
         jPanel1.add(txfConcepto);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 550, 130));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 540, 130));
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0, 250, 0));
 
@@ -161,7 +162,6 @@ public class PagarFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        
             if(txfImporte.getText().equals("") || txfConcepto.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe rellenar el campo IMPORTE y CONCEPTO para poder realizar la operacion", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -171,7 +171,6 @@ public class PagarFactura extends javax.swing.JFrame {
                 return;
                 }else{
                 try{
-            float importe = Float.parseFloat(txfImporte.getText());
             //Generar datos ficticios para rellenar campos de recibo
             //Generar numero aleatorio de 4 digitos y agregarle un 47(Valladolid)
             int numeroAleatorio = (int)(Math.random()*9000)+1000;
@@ -181,11 +180,16 @@ public class PagarFactura extends javax.swing.JFrame {
             String numRecibo =numeroAleatorio2+"";
             LocalDate hoy = LocalDate.now();
             String sFecha =formatearFecha(hoy);
+            int importeEntero = Integer.parseInt(txfImporte.getText());
+            //Dar formato de dos decimales
+            DecimalFormat decimalFormat = new DecimalFormat("#.00");
+            String importeDosDecimales = decimalFormat.format(Float.parseFloat(txfImporte.getText()));
             String dni="",nombre="",apellido="",telefono="",direccion="";
+            int saldo;
             try {
             Connection conexionFactura = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaFactura=conexionFactura.createStatement();
-            String sqlFactura = "SELECT DNI, Nombre, Apellido, Telefono, Direccion FROM clientes JOIN cuentas ON clientes.ID_Cliente = cuentas.ID_Cliente WHERE clientes.ID_Cliente = '"+this.ID_Cliente+"' AND cuentas.ID_Cuenta = '"+this.cuenta+"'";
+            String sqlFactura = "SELECT DNI, Nombre, Apellido, Telefono, Direccion, Saldo FROM clientes JOIN cuentas ON clientes.ID_Cliente = cuentas.ID_Cliente WHERE clientes.ID_Cliente = '"+this.ID_Cliente+"' AND cuentas.ID_Cuenta = '"+this.cuenta+"'";
             ResultSet resultadoFactura = sentenciaFactura.executeQuery(sqlFactura);
             if(resultadoFactura.next()){
                   dni = resultadoFactura.getString("DNI");
@@ -193,10 +197,40 @@ public class PagarFactura extends javax.swing.JFrame {
                   apellido = resultadoFactura.getString("Apellido");
                   telefono = resultadoFactura.getString("Telefono");
                   direccion = resultadoFactura.getString("Direccion");
+                  saldo = resultadoFactura.getInt("Saldo");
+                  if(saldo<importeEntero){
+                      JOptionPane.showMessageDialog(this, "La cuenta seleccionada no tiene saldo suficiente para ejecutar la operacion", "Error", JOptionPane.ERROR_MESSAGE);
+                      return;
+                  }
             }else{
                 JOptionPane.showMessageDialog(this, "No se ha podido realizar el tramite", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            LocalTime hora = LocalTime.now();
+            //Dar formato a la hora hh:mm:ss para que no aparezcan milesimas en el pdf
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String sHora = hora.format(formato);
+            
+            // //ACTUALIZAR EL SALDO DE LA CUENTA QUE PAGAR LA FACTURA
+            Connection conexionPagarFactura = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentenciaPagarFactura = conexionPagarFactura.createStatement();
+            int nuevaCantidad = saldo - importeEntero;
+            String sqlPagarFactura = "UPDATE cuentas SET saldo = '"+nuevaCantidad+"' WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Cuenta='"+this.cuenta+"'";
+            int resultadoPagarFactura = sentenciaPagarFactura.executeUpdate(sqlPagarFactura);
+                    
+            //AÑADIR OPERACION A LA TABLA DE MOVIMIENTOS
+            Connection conexionMovimientos = Conexion.mySQL("proyecto_final", "root", "");
+            Statement sentenciaMovimientos = conexionMovimientos.createStatement();
+            String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+sHora+"','Pago Factura',"+importeDosDecimales+");";
+            int resultadoMovimientos = sentenciaMovimientos.executeUpdate(sqlMovimientos);
+            
+            if(resultadoPagarFactura>0 && resultadoMovimientos>0){
+                JOptionPane.showMessageDialog(this, "Recoja su recibo.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se ha podido realizar el pago. Contacte con el administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             int contadorRecibo=0;//Agregar contador para que cada pdf vaya por separado
             Document documento = new Document(PageSize.A4.rotate());
             PdfWriter writer = PdfWriter.getInstance(documento, new java.io.FileOutputStream("recibo"+contadorRecibo+".pdf"));
@@ -209,9 +243,9 @@ public class PagarFactura extends javax.swing.JFrame {
             //Agregar parrafos
             Font grande = new Font(FontFactory.getFont("arial",18));
             grande.setColor(BaseColor.DARK_GRAY);
-            Paragraph parrafoFecha = new Paragraph(sFecha, grande);
-            parrafoFecha.setAlignment(Element.ALIGN_RIGHT);
-            documento.add(parrafoFecha);
+            Paragraph parrafoFechaHora = new Paragraph(sFecha+" "+sHora, grande);
+            parrafoFechaHora.setAlignment(Element.ALIGN_RIGHT);
+            documento.add(parrafoFechaHora);
             Paragraph parrafo1=new Paragraph("RECIBO FACTURA", grande);
             parrafo1.setAlignment(Element.ALIGN_CENTER);
             documento.add(parrafo1);
@@ -221,26 +255,31 @@ public class PagarFactura extends javax.swing.JFrame {
             //Agregar tabla
             PdfPTable table = new PdfPTable(5);
             //Asignar el ancho relativo a cada columna
-            float[] columnWidths = {1f,1f,2f,2f,1f};
+            float[] columnWidths = {1f,1f,1.5f,1.5f,1f};
             table.setWidths(columnWidths);
-             
 
-            PdfPCell celda11= new PdfPCell(new Phrase("Num. Emisora"));
-            celda11.setBorder(0);
-            PdfPCell celda12= new PdfPCell(new Phrase("Num. Recibo"));
-            PdfPCell celda13= new PdfPCell(new Phrase("NIF/CIF/TITULAR"));
-            PdfPCell celda14= new PdfPCell(new Phrase("Nombre y apellido"));
-            PdfPCell celda15= new PdfPCell(new Phrase("Importe"));
-            PdfPCell celda21= new PdfPCell(new Phrase(numEmisora));
-            PdfPCell celda22= new PdfPCell(new Phrase(numRecibo));
-            PdfPCell celda23= new PdfPCell(new Phrase(dni));
-            PdfPCell celda24= new PdfPCell(new Phrase(nombre+" "+apellido));
-            PdfPCell celda25= new PdfPCell(new Phrase(importe));
-            PdfPCell celda31= new PdfPCell(new Phrase("Concepto"));
+            PdfPCell celda11= new PdfPCell(new Phrase("Num. Emisora:\n "+numEmisora));
+            PdfPCell celda12= new PdfPCell(new Phrase("Num. Recibo:\n "+numRecibo));
+            PdfPCell celda13= new PdfPCell(new Phrase("NIF/CIF/TITULAR:\n"+dni));
+            PdfPCell celda14= new PdfPCell(new Phrase("Nombre y apellido:\n"+nombre+" "+apellido));
+            PdfPCell celda15= new PdfPCell(new Phrase("Importe:\n"+"EUR***"+importeDosDecimales+"€"));
+            PdfPCell celda21= new PdfPCell(new Phrase(""));
+            celda21.setBorder(0);
+            PdfPCell celda22= new PdfPCell(new Phrase(""));
+            celda22.setBorder(0);
+            PdfPCell celda23= new PdfPCell(new Phrase(""));
+            celda23.setBorder(0);
+            PdfPCell celda24= new PdfPCell(new Phrase(""));
+            celda24.setBorder(0);
+            PdfPCell celda25= new PdfPCell(new Phrase(""));
+            PdfPCell celda31= new PdfPCell(new Phrase("Concepto: \n"+txfConcepto.getText()));
+            PdfPCell celda32= new PdfPCell(new Phrase(""));
+            celda32.setBorder(0);
             PdfPCell celda33= new PdfPCell(new Phrase(""));
-            PdfPCell celda32= new PdfPCell(new Phrase(txfConcepto.getText()));
-            PdfPCell celda34= new PdfPCell(new Phrase(""));
+            celda33.setBorder(0);
+            PdfPCell celda34= new PdfPCell(new Phrase("Direccion: \n"+direccion));
             PdfPCell celda35= new PdfPCell(new Phrase(""));
+            celda35.setBorder(0);
             table.addCell(celda11);
             table.addCell(celda12);
             table.addCell(celda13);
@@ -256,13 +295,22 @@ public class PagarFactura extends javax.swing.JFrame {
             table.addCell(celda33);
             table.addCell(celda34);
             table.addCell(celda35);
-            
             //Añadir la tabla al documento
             documento.add(table);
+            //Agregar parrafo separatorio
+            Paragraph parrafoSeparado=new Paragraph("------------------------------------------------------------------------------------------------------", grande);
+            parrafoSeparado.setAlignment(Element.ALIGN_CENTER);
+            documento.add(parrafoSeparado);
+            //Agregar firma del banco
+            Image imagenFirma = Image.getInstance("./src/img/firma.png");
+            imagenFirma.scaleToFit(100, 100);
+            imagenFirma.setAlignment(Element.ALIGN_CENTER);
+            documento.add(imagenFirma);
             //Abrir el fichero en el explorador por defecto
             File file = new File("recibo"+contadorRecibo+".pdf");
             Desktop.getDesktop().open(file);
             documento.close();
+            
                     } catch (SQLException ex) {
                       Logger.getLogger(PagarFactura.class.getName()).log(Level.SEVERE, null, ex);
                     }
