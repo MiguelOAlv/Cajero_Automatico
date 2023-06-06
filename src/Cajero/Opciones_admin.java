@@ -99,15 +99,19 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         lblUbicacion = new javax.swing.JLabel();
         lblEfectivo = new javax.swing.JLabel();
-        btnAltaUsuario = new javax.swing.JButton();
         btnDesbloquear = new javax.swing.JButton();
-        btnAltaTarjeta = new javax.swing.JButton();
         btnArqueo = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
-        btnAltaCuenta = new javax.swing.JButton();
         btnApagar = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        btnAltaUsuario = new javax.swing.JMenuItem();
+        btnAltaCuenta = new javax.swing.JMenuItem();
+        btnAltaTarjeta = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
@@ -125,7 +129,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnDesconectarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDesconectar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 160, 50));
+        getContentPane().add(btnDesconectar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 160, 50));
 
         lblSesion.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblSesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -161,19 +165,7 @@ public class Opciones_admin extends javax.swing.JFrame {
         lblEfectivo.setText("Cantidad de Efectivo:");
         jPanel1.add(lblEfectivo);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 270, 110));
-
-        btnAltaUsuario.setBackground(new java.awt.Color(0, 204, 204));
-        btnAltaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAltaUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        btnAltaUsuario.setText("Alta Cliente");
-        btnAltaUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnAltaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaUsuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAltaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 190, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 270, 110));
 
         btnDesbloquear.setBackground(new java.awt.Color(0, 204, 204));
         btnDesbloquear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -185,19 +177,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnDesbloquearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDesbloquear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 190, -1));
-
-        btnAltaTarjeta.setBackground(new java.awt.Color(0, 204, 204));
-        btnAltaTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAltaTarjeta.setForeground(new java.awt.Color(0, 0, 0));
-        btnAltaTarjeta.setText("Alta Tarjeta");
-        btnAltaTarjeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnAltaTarjeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaTarjetaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAltaTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 190, -1));
+        getContentPane().add(btnDesbloquear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 190, 40));
 
         btnArqueo.setBackground(new java.awt.Color(0, 204, 204));
         btnArqueo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -209,7 +189,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnArqueoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnArqueo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, -1));
+        getContentPane().add(btnArqueo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 190, 40));
 
         btnHistorial.setBackground(new java.awt.Color(0, 204, 204));
         btnHistorial.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -221,19 +201,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnHistorialActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 190, -1));
-
-        btnAltaCuenta.setBackground(new java.awt.Color(0, 204, 204));
-        btnAltaCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAltaCuenta.setForeground(new java.awt.Color(0, 0, 0));
-        btnAltaCuenta.setText("Alta Cuenta");
-        btnAltaCuenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnAltaCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaCuentaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAltaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 190, -1));
+        getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 190, 40));
 
         btnApagar.setBackground(new java.awt.Color(255, 102, 102));
         btnApagar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -245,7 +213,7 @@ public class Opciones_admin extends javax.swing.JFrame {
                 btnApagarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 190, -1));
+        getContentPane().add(btnApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 190, -1));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
@@ -254,6 +222,48 @@ public class Opciones_admin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_admin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 350));
+
+        jMenu1.setText("Alta");
+
+        btnAltaUsuario.setText("Alta Cliente");
+        btnAltaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnAltaUsuario);
+
+        btnAltaCuenta.setText("Alta Cuenta");
+        btnAltaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaCuentaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnAltaCuenta);
+
+        btnAltaTarjeta.setText("Alta Tarjeta");
+        btnAltaTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaTarjetaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnAltaTarjeta);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Modificacion");
+
+        jMenuItem1.setText("Modificar datos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
@@ -269,17 +279,29 @@ public class Opciones_admin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnApagarActionPerformed
 
-    private void btnAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUsuarioActionPerformed
-        AltaCliente AltaCliente = new AltaCliente(this.Sesion);
-        AltaCliente.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAltaUsuarioActionPerformed
-
     private void btnDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearActionPerformed
         DesbloquearTarjeta DesbloquearTarjeta = new DesbloquearTarjeta(this.Sesion);
         DesbloquearTarjeta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDesbloquearActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        HistorialCajero HistorialCajero = new HistorialCajero(this.Sesion);
+        HistorialCajero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void btnArqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArqueoActionPerformed
+        ArqueoCajero ArqueoCajero = new ArqueoCajero(this.Sesion);
+        ArqueoCajero.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnArqueoActionPerformed
+
+    private void btnAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUsuarioActionPerformed
+        AltaCliente AltaCliente = new AltaCliente(this.Sesion);
+        AltaCliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAltaUsuarioActionPerformed
 
     private void btnAltaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaCuentaActionPerformed
         AltaCuenta AltaCuenta = new AltaCuenta(this.Sesion);
@@ -293,17 +315,11 @@ public class Opciones_admin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnAltaTarjetaActionPerformed
 
-    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        HistorialCajero HistorialCajero = new HistorialCajero(this.Sesion);
-        HistorialCajero.setVisible(true);
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ModificarDatos ModificarDatos = new ModificarDatos(this.Sesion);
+        ModificarDatos.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnHistorialActionPerformed
-
-    private void btnArqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArqueoActionPerformed
-        ArqueoCajero ArqueoCajero = new ArqueoCajero(this.Sesion);
-        ArqueoCajero.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnArqueoActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,9 +357,9 @@ public class Opciones_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAltaCuenta;
-    private javax.swing.JButton btnAltaTarjeta;
-    private javax.swing.JButton btnAltaUsuario;
+    private javax.swing.JMenuItem btnAltaCuenta;
+    private javax.swing.JMenuItem btnAltaTarjeta;
+    private javax.swing.JMenuItem btnAltaUsuario;
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnArqueo;
     private javax.swing.JButton btnDesbloquear;
@@ -351,6 +367,10 @@ public class Opciones_admin extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEfectivo;
     private javax.swing.JLabel lblFecha;

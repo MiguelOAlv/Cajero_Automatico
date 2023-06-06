@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Cajero">
   <ClassDiagramComponents>
-    <Class name="AltaCliente" package="Cajero" visibility="public" xPosition="4501.0" yPosition="1258.0">
+    <Class name="AltaCliente" package="Cajero" visibility="public" xPosition="3804.0" yPosition="3479.0">
       <Fields>
         <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
@@ -41,7 +41,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="AltaCuenta" package="Cajero" visibility="public" xPosition="4501.0" yPosition="1868.0">
+    <Class name="AltaCuenta" package="Cajero" visibility="public" xPosition="4523.0" yPosition="3555.0">
       <Fields>
         <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
@@ -76,7 +76,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="AltaTarjeta" package="Cajero" visibility="public" xPosition="4187.0" yPosition="2403.0">
+    <Class name="AltaTarjeta" package="Cajero" visibility="public" xPosition="975.0" yPosition="381.0">
       <Fields>
         <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
@@ -109,7 +109,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ArqueoCajero" package="Cajero" visibility="public" xPosition="1578.0" yPosition="3197.0">
+    <Class name="ArqueoCajero" package="Cajero" visibility="public" xPosition="5410.0" yPosition="1782.0">
       <Fields>
         <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnArqueo" type="javax.swing.JButton" visibility="private"/>
@@ -161,17 +161,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Billetes" package="Cajero" visibility="public" xPosition="1420.0" yPosition="1166.0">
-      <Fields>
-        <Field name="billete5" type="int" visibility="private"/>
-        <Field name="billete10" type="int" visibility="private"/>
-        <Field name="billete20" type="int" visibility="private"/>
-        <Field name="billete50" type="int" visibility="private"/>
-      </Fields>
-      <Constructors/>
-      <Methods/>
-    </Class>
-    <Class name="CambiarPIN" package="Cajero" visibility="public" xPosition="1707.0" yPosition="38.0">
+    <Class name="CambiarPIN" package="Cajero" visibility="public" xPosition="387.0" yPosition="830.0">
       <Fields>
         <Field name="btnActualizar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnCambiar" type="javax.swing.JButton" visibility="private"/>
@@ -227,7 +217,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ConsultarMovimientos" package="Cajero" visibility="public" xPosition="2333.0" yPosition="1360.0">
+    <Class name="ConsultarMovimientos" package="Cajero" visibility="public" xPosition="3221.0" yPosition="468.0">
       <Fields>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnVerRegistros" type="javax.swing.JButton" visibility="private"/>
@@ -264,7 +254,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CuadreCaja" package="Cajero" visibility="public" xPosition="2515.0" yPosition="51.0">
+    <Class name="CuadreCaja" package="Cajero" visibility="public" xPosition="4664.0" yPosition="1524.0">
       <Fields>
         <Field name="btnCuadre" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
@@ -303,7 +293,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="DepositarEfectivo" package="Cajero" visibility="public" xPosition="3237.0" yPosition="51.0">
+    <Class name="DepositarEfectivo" package="Cajero" visibility="public" xPosition="4664.0" yPosition="1068.0">
       <Fields>
         <Field name="btnDepositar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
@@ -340,7 +330,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="DesbloquearTarjeta" package="Cajero" visibility="public" xPosition="3909.0" yPosition="3318.0">
+    <Class name="DesbloquearTarjeta" package="Cajero" visibility="public" xPosition="5220.0" yPosition="3191.0">
       <Fields>
         <Field name="btnAceptar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnDesbloquear" type="javax.swing.JButton" visibility="private"/>
@@ -379,7 +369,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="HistorialCajero" package="Cajero" visibility="public" xPosition="2537.0" yPosition="3387.0">
+    <Class name="HistorialCajero" package="Cajero" visibility="public" xPosition="1691.0" yPosition="115.0">
       <Fields>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnVerRegistros" type="javax.swing.JButton" visibility="private"/>
@@ -413,7 +403,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Idioma" package="Cajero" visibility="public" xPosition="1430.0" yPosition="1704.0">
+    <Class name="Idioma" package="Cajero" visibility="public" xPosition="1548.0" yPosition="1746.0">
       <Fields>
         <Field name="serialVersionUID" type="long" visibility="private" isStatic="true" isFinal="true"/>
         <Field name="nombre" type="String" visibility="private"/>
@@ -430,7 +420,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Inicio" package="Cajero" visibility="public" xPosition="89.0" yPosition="1882.0">
+    <Class name="Inicio" package="Cajero" visibility="public" xPosition="364.0" yPosition="2472.0">
       <Fields>
         <Field name="btnEspanol" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnFrances" type="javax.swing.JButton" visibility="private"/>
@@ -458,7 +448,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Introducir_PIN" package="Cajero" visibility="public" xPosition="89.0" yPosition="897.0">
+    <Class name="Introducir_PIN" package="Cajero" visibility="public" xPosition="1486.0" yPosition="3140.0">
       <Fields>
         <Field name="btn0" type="javax.swing.JButton" visibility="private"/>
         <Field name="btn1" type="javax.swing.JButton" visibility="private"/>
@@ -543,7 +533,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Introducir_Tarjeta" package="Cajero" visibility="public" xPosition="688.0" yPosition="2416.0">
+    <Class name="Introducir_Tarjeta" package="Cajero" visibility="public" xPosition="717.0" yPosition="3044.0">
       <Fields>
         <Field name="btn0" type="javax.swing.JButton" visibility="private"/>
         <Field name="btn1" type="javax.swing.JButton" visibility="private"/>
@@ -637,7 +627,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Metodos" package="Cajero" visibility="public" xPosition="1345.0" yPosition="929.0">
+    <Class name="Metodos" package="Cajero" visibility="public" xPosition="4735.0" yPosition="2256.0">
       <Fields>
         <Field name="numerosGenerados" type="Set&lt;Integer&gt;" visibility="private" isStatic="true"/>
       </Fields>
@@ -653,9 +643,50 @@
           <Argument type="LocalDate" name="fecha"/>
         </Method>
         <Method name="generarAleatorio" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="reparto" returnType="int[]" visibility="public" isStatic="true">
+          <Argument type="int" name="cantidadTotal"/>
+        </Method>
+        <Method name="entregarDinero" returnType="int[]" visibility="public" isStatic="true">
+          <Argument type="int" name="cantidadTotal"/>
+        </Method>
       </Methods>
     </Class>
-    <Class name="Opciones_admin" package="Cajero" visibility="public" xPosition="3224.0" yPosition="3064.0">
+    <Class name="ObtenerDinero" package="Cajero" visibility="public" xPosition="3937.0" yPosition="787.0">
+      <Fields>
+        <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lblIntroduce" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="ID_Cliente" type="String" visibility="private"/>
+        <Field name="Nombre" type="String" visibility="private"/>
+        <Field name="TarjetaCredito" type="String" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="Sesion" type="Sesion" visibility="private"/>
+        <Field name="idioma" type="Idioma" visibility="private"/>
+        <Field name="cuenta" type="int" visibility="private"/>
+        <Field name="cantidad" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sesion" name="sesion_usuario"/>
+          <Argument type="int" name="cantidad"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="cargarIdioma" returnType="void" visibility="public">
+          <Argument type="Idioma" name="idioma"/>
+        </Method>
+        <Method name="initBilletes" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Opciones_admin" package="Cajero" visibility="public" xPosition="5410.0" yPosition="2419.0">
       <Fields>
         <Field name="btnAltaCuenta" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnAltaTarjeta" type="javax.swing.JButton" visibility="private"/>
@@ -718,7 +749,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Opciones_usuario" package="Cajero" visibility="public" xPosition="3968.0" yPosition="170.0">
+    <Class name="Opciones_usuario" package="Cajero" visibility="public" xPosition="2266.0" yPosition="3042.0">
       <Fields>
         <Field name="btnDepositar" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnDesconectar" type="javax.swing.JButton" visibility="private"/>
@@ -796,12 +827,17 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="PagarFactura" package="Cajero" visibility="public" xPosition="1983.0" yPosition="1911.0">
+    <Class name="PagarFactura" package="Cajero" visibility="public" xPosition="3075.0" yPosition="3479.0">
       <Fields>
         <Field name="btnFactura" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
         <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
         <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="txfConcepto" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txfImporte" type="javax.swing.JTextField" visibility="private"/>
         <Field name="ID_Cliente" type="String" visibility="private"/>
         <Field name="Nombre" type="String" visibility="private"/>
         <Field name="TarjetaCredito" type="String" visibility="private"/>
@@ -833,7 +869,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="RealizarTransferencia" package="Cajero" visibility="public" xPosition="543.0" yPosition="218.0">
+    <Class name="RealizarTransferencia" package="Cajero" visibility="public" xPosition="303.0" yPosition="1643.0">
       <Fields>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnTransferencia2" type="javax.swing.JButton" visibility="private"/>
@@ -879,12 +915,14 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="RetirarEfectivo" package="Cajero" visibility="public" xPosition="1504.0" yPosition="2493.0">
+    <Class name="RetirarEfectivo" package="Cajero" visibility="public" xPosition="2475.0" yPosition="115.0">
       <Fields>
-        <Field name="btnRetirar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnRetirar2" type="javax.swing.JButton" visibility="private"/>
         <Field name="btnRetroceder" type="javax.swing.JButton" visibility="private"/>
         <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
         <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="lblSeleccion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="txfCantidad" type="javax.swing.JTextField" visibility="private"/>
         <Field name="ID_Cliente" type="String" visibility="private"/>
         <Field name="Nombre" type="String" visibility="private"/>
         <Field name="TarjetaCredito" type="String" visibility="private"/>
@@ -908,7 +946,7 @@
         <Method name="btnRetrocederActionPerformed" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
-        <Method name="btnRetirarActionPerformed" returnType="void" visibility="private">
+        <Method name="btnRetirar2ActionPerformed" returnType="void" visibility="private">
           <Argument type="java.awt.event.ActionEvent" name="evt"/>
         </Method>
         <Method name="main" returnType="void" visibility="public" isStatic="true">
@@ -916,7 +954,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Sesion" package="Cajero" visibility="public" xPosition="3274.0" yPosition="1568.0">
+    <Class name="Sesion" package="Cajero" visibility="public" xPosition="2735.0" yPosition="1944.0">
       <Fields>
         <Field name="ID_Administrador" type="int" visibility="private"/>
         <Field name="ID_Cliente" type="String" visibility="private"/>
@@ -977,42 +1015,45 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
+    <HasRelation name="sesion" source="Cajero.CuadreCaja" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Introducir_PIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.ConsultarMovimientos" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Opciones_admin" target="Cajero.Sesion" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.DepositarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.DepositarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.DesbloquearTarjeta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.RealizarTransferencia" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.ArqueoCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.CambiarPIN" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Sesion" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.RealizarTransferencia" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Introducir_PIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.CambiarPIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.HistorialCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.Opciones_usuario" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.RetirarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.PagarFactura" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.CambiarPIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Inicio" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.AltaCuenta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.PagarFactura" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="idioma" source="Cajero.ConsultarMovimientos" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="idioma" source="Cajero.DepositarEfectivo" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.Sesion" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.RetirarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="sesion" source="Cajero.AltaTarjeta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.RealizarTransferencia" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.Sesion" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.ConsultarMovimientos" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.PagarFactura" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.Opciones_usuario" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.Opciones_admin" target="Cajero.Sesion" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.CambiarPIN" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.CambiarPIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.ConsultarMovimientos" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.AltaCuenta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.CuadreCaja" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.AltaCliente" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.DepositarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.RetirarEfectivo" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.DesbloquearTarjeta" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.HistorialCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.RealizarTransferencia" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.CambiarPIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.Introducir_PIN" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.Opciones_admin" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.RetirarEfectivo" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.Opciones_usuario" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.PagarFactura" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.Introducir_PIN" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.PagarFactura" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idioma" source="Cajero.Inicio" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="sesion" source="Cajero.ArqueoCajero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="Sesion" source="Cajero.Opciones_usuario" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Cajero.RealizarTransferencia" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="Sesion" source="Cajero.DepositarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.ObtenerDinero" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.PagarFactura" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sesion" source="Cajero.AltaCliente" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Sesion" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.ObtenerDinero" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.RetirarEfectivo" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.RetirarEfectivo" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Introducir_Tarjeta" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.RealizarTransferencia" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Cajero.ConsultarMovimientos" target="Cajero.Idioma" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idioma" source="Cajero.Opciones_usuario" target="Cajero.Idioma" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.ObtenerDinero" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="Sesion" source="Cajero.Opciones_admin" target="Cajero.Sesion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

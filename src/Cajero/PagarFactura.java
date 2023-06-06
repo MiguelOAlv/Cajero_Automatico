@@ -55,6 +55,7 @@ public class PagarFactura extends javax.swing.JFrame {
         initComponents();
         this.Nombre = sesion_usuario.getNombre();
         this.pin = sesion_usuario.getPin();
+        this.TarjetaCredito=sesion_usuario.getTarjetaCredito();
         this.cuenta = cuenta;
         this.ID_Cliente=sesion_usuario.getID_Cliente();
         this.idioma=sesion_usuario.getIdioma();
@@ -74,7 +75,7 @@ public class PagarFactura extends javax.swing.JFrame {
    public void cargarIdioma(Idioma idioma){
         Properties propiedades = new Idioma(idioma.getNombre());
         this.setTitle(propiedades.getProperty("RealizarTransferencia"));
-        btnFactura.setText(propiedades.getProperty("btnFactura"));
+        btnFactura.setText(propiedades.getProperty("btnFactura2"));
         btnRetroceder.setText(propiedades.getProperty("btnRetroceder"));
     }
     
@@ -137,7 +138,7 @@ public class PagarFactura extends javax.swing.JFrame {
         btnFactura.setBackground(new java.awt.Color(51, 255, 51));
         btnFactura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFactura.setForeground(new java.awt.Color(0, 0, 0));
-        btnFactura.setText("Realizar Operación");
+        btnFactura.setText("Realizar Operacion");
         btnFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,22 +216,17 @@ public class PagarFactura extends javax.swing.JFrame {
             Connection conexionPagarFactura = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaPagarFactura = conexionPagarFactura.createStatement();
             int nuevaCantidad = saldo - importeEntero;
-            String sqlPagarFactura = "UPDATE cuentas SET saldo = '"+nuevaCantidad+"' WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Cuenta='"+this.cuenta+"'";
+            String sqlPagarFactura = "UPDATE cuentas SET saldo = "+nuevaCantidad+" WHERE ID_Cliente = "+this.ID_Cliente+" AND ID_Cuenta="+this.cuenta+"";
             int resultadoPagarFactura = sentenciaPagarFactura.executeUpdate(sqlPagarFactura);
                     
-            //AÑADIR OPERACION A LA TABLA DE MOVIMIENTOS
+            //ANADIR OPERACION A LA TABLA DE MOVIMIENTOS
             Connection conexionMovimientos = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaMovimientos = conexionMovimientos.createStatement();
-            String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+sHora+"','Pago Factura',"+importeDosDecimales+");";
+            String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+sHora+"','Pago Factura',"+importeEntero+");";
             int resultadoMovimientos = sentenciaMovimientos.executeUpdate(sqlMovimientos);
             
-            if(resultadoPagarFactura>0 && resultadoMovimientos>0){
+           if(resultadoPagarFactura>0 && resultadoMovimientos>0){
                 JOptionPane.showMessageDialog(this, "Recoja su recibo.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this, "No se ha podido realizar el pago. Contacte con el administrador", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
             int contadorRecibo=0;//Agregar contador para que cada pdf vaya por separado
             Document documento = new Document(PageSize.A4.rotate());
             PdfWriter writer = PdfWriter.getInstance(documento, new java.io.FileOutputStream("recibo"+contadorRecibo+".pdf"));
@@ -251,7 +247,7 @@ public class PagarFactura extends javax.swing.JFrame {
             documento.add(parrafo1);
             Paragraph espacio = new Paragraph("\n");
             documento.add(espacio);
-            Font pequeño = new Font(FontFactory.getFont("arial",8));
+            Font pequeno = new Font(FontFactory.getFont("arial",8));
             //Agregar tabla
             PdfPTable table = new PdfPTable(5);
             //Asignar el ancho relativo a cada columna
@@ -262,7 +258,7 @@ public class PagarFactura extends javax.swing.JFrame {
             PdfPCell celda12= new PdfPCell(new Phrase("Num. Recibo:\n "+numRecibo));
             PdfPCell celda13= new PdfPCell(new Phrase("NIF/CIF/TITULAR:\n"+dni));
             PdfPCell celda14= new PdfPCell(new Phrase("Nombre y apellido:\n"+nombre+" "+apellido));
-            PdfPCell celda15= new PdfPCell(new Phrase("Importe:\n"+"EUR***"+importeDosDecimales+"€"));
+            PdfPCell celda15= new PdfPCell(new Phrase("Importe:\n"+"EUR***"+importeDosDecimales));
             PdfPCell celda21= new PdfPCell(new Phrase(""));
             celda21.setBorder(0);
             PdfPCell celda22= new PdfPCell(new Phrase(""));
@@ -295,7 +291,7 @@ public class PagarFactura extends javax.swing.JFrame {
             table.addCell(celda33);
             table.addCell(celda34);
             table.addCell(celda35);
-            //Añadir la tabla al documento
+            //Anadir la tabla al documento
             documento.add(table);
             //Agregar parrafo separatorio
             Paragraph parrafoSeparado=new Paragraph("------------------------------------------------------------------------------------------------------", grande);
@@ -310,7 +306,10 @@ public class PagarFactura extends javax.swing.JFrame {
             File file = new File("recibo"+contadorRecibo+".pdf");
             Desktop.getDesktop().open(file);
             documento.close();
-            
+           }else{
+                JOptionPane.showMessageDialog(this, "No se ha podido realizar el pago. Contacte con el administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
                     } catch (SQLException ex) {
                       Logger.getLogger(PagarFactura.class.getName()).log(Level.SEVERE, null, ex);
                     }

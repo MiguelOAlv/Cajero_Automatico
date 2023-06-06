@@ -146,37 +146,89 @@ public class RetirarEfectivo extends javax.swing.JFrame {
                 if(saldo<cantidadRetirar){
                     JOptionPane.showMessageDialog(this, "No tiene saldo suficiente para realizar la retirada", "Error", JOptionPane.ERROR_MESSAGE);
                 }else{
-                    //ACTUALIZAR EL SALDO DE LA CUENTA QUE RETIRA DINERO
-                    Connection conexionRetirar2 = Conexion.mySQL("proyecto_final", "root", "");
-                    Statement sentenciaRetirar2 = conexionRetirar2.createStatement();
-                    int nuevaCantidad = saldo-cantidadRetirar;
-                    String sqlRetirar2 = "UPDATE cuentas SET saldo = '"+nuevaCantidad+"' WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Cuenta='"+this.cuenta+"'";
-                    int resultadoRetirar2 = sentenciaRetirar2.executeUpdate(sqlRetirar2);
-                    
-                    //AÑADIR OPERACION A LA TABLA DE MOVIMIENTOS
-                    Connection conexionMovimientos = Conexion.mySQL("proyecto_final", "root", "");
-                    Statement sentenciaMovimientos = conexionMovimientos.createStatement();
-                    LocalTime hora=LocalTime.now();
-                    String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada',"+cantidadRetirar+");";
-                    int resultadoMovimientos = sentenciaMovimientos.executeUpdate(sqlMovimientos);
-                    
-                    //AÑADIR RETIRADA A LA TABLA DE TRANSACCIONES
-                    Connection conexionTransaccion = Conexion.mySQL("proyecto_final", "root", "");
-                    Statement sentenciaTransaccion = conexionTransaccion.createStatement();
-                    String sqlTransaccion = "INSERT INTO transacciones_cajeros (ID_Cajero, ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto) VALUES ('1',"+this.TarjetaCredito+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada','"+cantidadRetirar+"');";
-                    int resultadoTransaccion = sentenciaTransaccion.executeUpdate(sqlTransaccion);
-                    
-                     
-                    if(resultadoRetirar2>0 && resultadoMovimientos>0 && resultadoTransaccion>0){
-                        JOptionPane.showMessageDialog(this, "Se ha retirado el dinero correctamente, proceda a recogerlo", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                        ObtenerDinero ObtenerDinero = new ObtenerDinero(this.Sesion, cantidadRetirar);
-                        ObtenerDinero.setVisible(true);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(this, "Error en la retirada, intentelo de nuevo o consulte con el administrador", "Error", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-            }
+                    //COMPROBAR QUE NO SE HA PASADO DEL LIMITE DIARIO
+                    Connection conexionLimite = Conexion.mySQL("proyecto_final", "root", "");
+                    Statement sentenciaLimite = conexionLimite.createStatement();
+                    String sqlLimite = "SELECT Limite_de_credito FROM tarjetas_de_credito WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Tarjeta='"+this.TarjetaCredito+"'";
+                    ResultSet resultadoLimite= sentenciaLimite.executeQuery(sqlLimite);
+                    if(resultadoLimite.next()){
+                        int limite = resultadoLimite.getInt("Limite_de_credito");
+                        int limiteATM = 0;
+                        //COMPROBAR EL LIMITE DEL ATM
+                        Connection conexionLimiteATM = Conexion.mySQL("proyecto_final", "root", "");
+                        Statement sentenciaLimiteATM = conexionLimiteATM.createStatement();
+                        String sqlLimiteATM = "SELECT limite_diario FROM cajeros_automaticos WHERE ID_Cajero = 1";
+                        ResultSet resultadoLimiteATM= sentenciaLimiteATM.executeQuery(sqlLimiteATM);
+                        if(resultadoLimiteATM.next()){
+                            limiteATM = resultadoLimiteATM.getInt("limite_diario");
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error interno, consulte con un administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        //CALCULAR EL MONTO DE RETIRADAS DEL ATM ENTRE HOY Y MANANA
+                        Connection conexionIntervaloATM = Conexion.mySQL("proyecto_final", "root", "");
+                        Statement sentenciaIntervaloATM = conexionIntervaloATM.createStatement();
+                        //Declarar la variable manana
+                        LocalDate manana = LocalDate.now().plusDays(1);
+                        String sManana = formatearFecha(manana);
+                        String sqlIntervaloATM = "SELECT SUM(Monto) as MontoATM FROM transacciones_cajeros WHERE ID_Cajero = 1 AND Tipo_transaccion ='Retirada' BETWEEN '"+this.fecha+"' AND '"+sManana+"'";
+                        ResultSet resultadoIntervaloATM = sentenciaIntervaloATM.executeQuery(sqlIntervaloATM);
+                        int montoATM=0;
+                        if(resultadoIntervaloATM.next()){
+                            montoATM = resultadoIntervaloATM.getInt("MontoATM");
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Error interno, consulte con un administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        //COMPROBAR EL LIMITE DE LA TARJETA CON EL SUMATORIO DE RETIRADAS EN EL INTERVALO DE FECHAS HOY - MANANA
+                        Connection conexionIntervalo = Conexion.mySQL("proyecto_final", "root", "");
+                        Statement sentenciaIntervalo = conexionIntervalo.createStatement();
+                        String sqlIntervalo = "SELECT SUM(Monto) as Monto FROM movimientos WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Tarjeta='"+this.TarjetaCredito+"' AND Tipo_Movimiento ='Retirada' BETWEEN '"+this.fecha+"' AND '"+sManana+"'";
+                        ResultSet resultadoIntervalo = sentenciaIntervalo.executeQuery(sqlIntervalo);
+                        if(resultadoIntervalo.next()){
+                            int monto = resultadoIntervalo.getInt("Monto");
+                            //COMPROBAR SI SE HA RETIRADO MAS DEL LIMITE DE LA TARJETA Y MAS DEL LIMITE DEL ATM
+                            if(monto+cantidadRetirar>limite || montoATM+cantidadRetirar>limiteATM){
+                                JOptionPane.showMessageDialog(this, "La cantidad a retirar supera el limite diario de la tarjeta o del ATM", "Error", JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                //ACTUALIZAR EL SALDO DE LA CUENTA QUE RETIRA DINERO
+                                Connection conexionRetirar2 = Conexion.mySQL("proyecto_final", "root", "");
+                                Statement sentenciaRetirar2 = conexionRetirar2.createStatement();
+                                int nuevaCantidad = saldo-cantidadRetirar;
+                                String sqlRetirar2 = "UPDATE cuentas SET saldo = '"+nuevaCantidad+"' WHERE ID_Cliente = '"+this.ID_Cliente+"' AND ID_Cuenta='"+this.cuenta+"'";
+                                int resultadoRetirar2 = sentenciaRetirar2.executeUpdate(sqlRetirar2);
+                                
+                                //ANADIR OPERACION A LA TABLA DE MOVIMIENTOS
+                                Connection conexionMovimientos = Conexion.mySQL("proyecto_final", "root", "");
+                                Statement sentenciaMovimientos = conexionMovimientos.createStatement();
+                                LocalTime hora=LocalTime.now();
+                                String sqlMovimientos = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada',"+cantidadRetirar+");";
+                                int resultadoMovimientos = sentenciaMovimientos.executeUpdate(sqlMovimientos);
+
+                                //ANADIR RETIRADA A LA TABLA DE TRANSACCIONES
+                                Connection conexionTransaccion = Conexion.mySQL("proyecto_final", "root", "");
+                                Statement sentenciaTransaccion = conexionTransaccion.createStatement();
+                                String sqlTransaccion = "INSERT INTO transacciones_cajeros (ID_Cajero, ID_Tarjeta, Fecha, Hora, Tipo_transaccion, Monto) VALUES ('1',"+this.TarjetaCredito+",'"+formatearFecha(this.fecha)+"','"+hora+"','Retirada','"+cantidadRetirar+"');";
+                                int resultadoTransaccion = sentenciaTransaccion.executeUpdate(sqlTransaccion);
+                                
+                                if(resultadoRetirar2>0 && resultadoMovimientos>0 && resultadoTransaccion>0){
+                                    //ACTUALIZAR CANTIDAD TOTAL DEL EFECTIVO EN EL ATM
+                                    Connection conexionCantidadTotal = Conexion.mySQL("proyecto_final", "root", "");
+                                    Statement sentenciaCantidadTotal = conexionCantidadTotal.createStatement();
+                                    String sqlCantidadTotal = "UPDATE cajeros_automaticos SET Cantidad_de_efectivo_actual = Cantidad_de_efectivo_actual - '"+cantidadRetirar+"' WHERE ID_Cajero= 1";
+                                    int resultadoCantidadTotal = sentenciaCantidadTotal.executeUpdate(sqlCantidadTotal);
+                                    if(resultadoCantidadTotal>0){
+                                    JOptionPane.showMessageDialog(this, "Se ha retirado el dinero correctamente, proceda a recogerlo", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                                    ObtenerDinero ObtenerDinero = new ObtenerDinero(this.Sesion, cantidadRetirar);
+                                    ObtenerDinero.setVisible(true);
+                                    this.dispose();
+                                }else{
+                                    JOptionPane.showMessageDialog(this, "Error en la retirada, intentelo de nuevo o consulte con el administrador", "Error", JOptionPane.INFORMATION_MESSAGE);
+                                    }
+                                        }
+                                    }
+                                }   
+                            }
+                        }
+                    }          
             } catch (SQLException ex) {
                 Logger.getLogger(RetirarEfectivo.class.getName()).log(Level.SEVERE, null, ex);
             }

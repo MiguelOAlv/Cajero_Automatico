@@ -53,7 +53,7 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
     }
         public void cargarIdioma(Idioma idioma){
             Properties propiedades = new Idioma(idioma.getNombre());
-            this.setTitle(propiedades.getProperty("Consultar Movimientos"));
+            this.setTitle(propiedades.getProperty("ConsultarMovimientos"));
             btnRetroceder.setText(propiedades.getProperty("btnRetroceder"));
             btnVerRegistros.setText(propiedades.getProperty("btnVerRegistros"));
             lblInicio.setText(propiedades.getProperty("lblInicio"));
@@ -81,7 +81,7 @@ public class ConsultarMovimientos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cambiar PIN");
+        setTitle("Consultar Movimientos");
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -53,7 +53,7 @@ public class CambiarPIN extends javax.swing.JFrame {
     }
         public void cargarIdioma(Idioma idioma){
             Properties propiedades = new Idioma(idioma.getNombre());
-            this.setTitle(propiedades.getProperty("Cambiar PIN"));
+            this.setTitle(propiedades.getProperty("CambiarPIN"));
             lblLimite.setText(propiedades.getProperty("lblLimite"));
             lblNuevo.setText(propiedades.getProperty("lblNuevo"));
             lblConfirmar.setText(propiedades.getProperty("lblConfirmar"));

@@ -227,6 +227,10 @@ public class RealizarTransferencia extends javax.swing.JFrame {
                                     //REPRODUCIR SONIDO SI LA TRANSFERENCIA SE REALIZA CON EXITO
                                     Toolkit.getDefaultToolkit().beep();
                                     JOptionPane.showMessageDialog(this, "La transferencia se ha realizado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                                    txfCuenta.setText("");
+                                    txfNombre.setText("");
+                                    txfImporte.setText("");
+                                    txfPIN.setText("");
                             }else{
                                 JOptionPane.showMessageDialog(this, "La transferencia no se ha podido realizar", "Error", JOptionPane.ERROR_MESSAGE);
                             }

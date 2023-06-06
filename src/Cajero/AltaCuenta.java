@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Cajero;
+import static Cajero.Metodos.generarIBAN;
 import static Cajero.Metodos.validarDNI;
 import Conexion_bd.Conexion;
 import java.awt.Color;
@@ -153,10 +154,11 @@ public class AltaCuenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "El tipo de cuenta solo puede ser Corriente o Ahorros", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
         try {
+            int iban = generarIBAN();
             Connection conexionCuenta = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentenciaCuenta;
             sentenciaCuenta = conexionCuenta.createStatement();
-            String sqlCuenta = "INSERT INTO cuentas(ID_Cliente, Saldo, Fecha_apertura, Tipo_cuenta)VALUES((SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+saldo+"', '"+fechaAperturaFormateada+"', '"+tipo+"');";
+            String sqlCuenta = "INSERT INTO cuentas(ID_Cuenta, ID_Cliente, Saldo, Fecha_apertura, Tipo_cuenta)VALUES("+iban+",(SELECT ID_Cliente FROM clientes WHERE clientes.DNI = '"+dni+"'), '"+saldo+"', '"+fechaAperturaFormateada+"', '"+tipo+"');";
             int resultadoCuenta = sentenciaCuenta.executeUpdate(sqlCuenta);
             if(resultadoCuenta>0){
                 JOptionPane.showMessageDialog(this, "La cuenta se ha dado de alta correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
