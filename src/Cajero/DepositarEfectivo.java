@@ -142,9 +142,18 @@ public class DepositarEfectivo extends javax.swing.JFrame {
             String sqlDeposito = "UPDATE cuentas SET Saldo = Saldo + "+deposito+" WHERE ID_Cliente = "+this.ID_Cliente+" AND ID_Cuenta="+this.cuenta+";";
             int resultadoDeposito = sentenciaDeposito.executeUpdate(sqlDeposito);
             if(resultadoDeposito>0){
+                LocalTime hora=LocalTime.now();
+                Connection conexionMovimiento = Conexion.mySQL("proyecto_final", "root", "");
+                Statement sentenciaMovimiento = conexionMovimiento.createStatement();
+                String sqlMovimiento = "INSERT INTO movimientos (ID_Cuenta, ID_Tarjeta, ID_Cliente, Fecha, Hora, Tipo_movimiento, Monto) VALUES ("+this.cuenta+","+this.TarjetaCredito+","+this.ID_Cliente+",'"+formatearFecha(this.fecha)+"','"+hora+"','Deposito',"+deposito+");";
+                int resultadoMovimiento = sentenciaMovimiento.executeUpdate(sqlMovimiento);
+                if(resultadoMovimiento>0){
                     JOptionPane.showMessageDialog(this, "El deposito se ha realizado con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 }else{
-                 JOptionPane.showMessageDialog(this, "No se ha podido realizar el deposito, consulte con la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se ha podido realizar el deposito, consulte con la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se ha podido realizar el deposito, consulte con la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(RetirarEfectivo.class.getName()).log(Level.SEVERE, null, ex);

@@ -6,24 +6,30 @@
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/AltaTarjeta.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Inicio.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ObtenerDinero.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Introducir_PIN.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ingles.properties</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/AltaCliente.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/frances.properties</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/RetirarEfectivo.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/AltaCuenta.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/HistorialCajero.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/PagarFactura.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Metodos.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Sesion.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Opciones_admin.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Opciones_usuario.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Idioma.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/espanol.properties</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/test/pruebas/TestValidarDNI.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ConsultarMovimientos.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ArqueoCajero.java</file>
-            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/CambiarPIN.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Introducir_Tarjeta.java</file>
             <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/DepositarEfectivo.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/RealizarTransferencia.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/DesbloquearTarjeta.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Introducir_PIN.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ingles.properties</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/AltaCliente.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/RetirarEfectivo.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Sesion.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Opciones_usuario.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/CuadreCaja.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/ModificarDatos.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/Idioma.java</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/espanol.properties</file>
+            <file>file:/C:/Users/Miguel/Documents/NetBeansProjects/Proyecto_Final/src/Cajero/CambiarPIN.java</file>
         </group>
     </open-files>
 </project-private>

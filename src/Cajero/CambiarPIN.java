@@ -70,7 +70,7 @@ public class CambiarPIN extends javax.swing.JFrame {
         try {
             Connection conexion_info = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_info = conexion_info.createStatement();
-            String sql_info = "select c.nombre, tdc.Limite_de_credito,tdc.Fecha_vencimiento from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+this.Sesion.getTarjetaCredito()+";";
+            String sql_info = "SELECT c.nombre, tdc.Limite_de_credito,tdc.Fecha_vencimiento FROM clientes c join tarjetas_de_credito tdc ON c.ID_Cliente = tdc.ID_Cliente WHERE ID_Tarjeta = "+this.Sesion.getTarjetaCredito()+";";
             ResultSet resultado_info = sentencia_info.executeQuery(sql_info);
             if(resultado_info.next()){
                 String nombre = resultado_info.getString("nombre");

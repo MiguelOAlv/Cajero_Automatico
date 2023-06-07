@@ -84,6 +84,7 @@ public class ModificarDatos extends javax.swing.JFrame {
             Logger.getLogger(ModificarDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +100,6 @@ public class ModificarDatos extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         btnRetroceder = new javax.swing.JButton();
-        btnConfirmar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,19 +147,7 @@ public class ModificarDatos extends javax.swing.JFrame {
         });
         jPanel2.add(btnRetroceder);
 
-        btnConfirmar.setBackground(new java.awt.Color(51, 255, 51));
-        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 0, 0));
-        btnConfirmar.setText("Confirmar cambios");
-        btnConfirmar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfirmar);
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 550, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_admin.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(610, 350));
@@ -176,14 +164,7 @@ public class ModificarDatos extends javax.swing.JFrame {
             Opciones_admin.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnRetrocederActionPerformed
-
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-            int row = table.getRowCount();
-            int column = table.getColumnCount();
-            for (int i = 0; i < row; i++) {
-               
-        }
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
             Object itemSeleccionado = cmbTablas.getSelectedItem();
@@ -241,7 +222,6 @@ public class ModificarDatos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JComboBox<String> cmbTablas;

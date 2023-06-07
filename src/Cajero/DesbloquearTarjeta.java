@@ -151,7 +151,7 @@ public class DesbloquearTarjeta extends javax.swing.JFrame {
             int numeroTarjeta = Integer.parseInt(txfTarjeta.getText());
             Connection conexion_info = Conexion.mySQL("proyecto_final", "root", "");
             Statement sentencia_info = conexion_info.createStatement();
-            String sql_info = "select c.nombre, tdc.Limite_de_credito, tdc.Fecha_vencimiento, tdc.Bloqueada from clientes c join tarjetas_de_credito tdc on c.ID_Cliente = tdc.ID_Cliente where ID_Tarjeta = "+numeroTarjeta+";";
+            String sql_info = "SELECT c.nombre, tdc.Limite_de_credito, tdc.Fecha_vencimiento, tdc.Bloqueada FROM clientes c join tarjetas_de_credito tdc ON c.ID_Cliente = tdc.ID_Cliente WHERE ID_Tarjeta = "+numeroTarjeta+";";
             ResultSet resultado_info = sentencia_info.executeQuery(sql_info);
             if(resultado_info.next()){
                 String nombre = resultado_info.getString("nombre");
