@@ -2,6 +2,6 @@ Esta aplicación ha sido diseñada a modo demostración para realizar transaccio
 
 La base de datos se encuentra en la carpeta Base de datos en el script proyecto_final.sql
 
-Leer el manual de usuario para el uso correcto de la aplicación. Si tiene alguna pregunta o sugerencia sobre la aplicación, pongase en contacto conmigo en la siguiente dirección de correo electrónico: mickey1198@hotmail.com
+Leer el manual de usuario para el uso correcto de la aplicación. Si tiene alguna pregunta o sugerencia sobre la aplicación, pongase en contacto conmigo en la siguiente dirección de correo electrónico: micckey1198@gmail.com
 
 *Nota: Esta aplicación es solo para fines de demostración y no permite realizar transacciones reales.
